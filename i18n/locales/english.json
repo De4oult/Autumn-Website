@@ -1,0 +1,117 @@
+{
+    "common" : {
+        "cta" : "Get Started",
+        "examples" : "View more examples"
+    },
+    "component" : {
+        "header" : {
+            "routes" : {
+                "documentation" : "Documentation",
+                "benchmarks" : "Benchmarks",
+                "roadmap" : "Roadmap",
+                "releases" : "Releases",
+                
+                "cta" : "Get Started"
+            }
+        },
+        "footer" : {
+            "built_by" : "Built by"
+        },
+        "card" : {
+            "benchmarks" : {
+                "title" : "Fast enough.",
+                "subtitle" : "Autumn is built on ASGI and uses modern Python features to ensure your app stays snappy."
+            }
+        }
+    },
+    "page" : {
+        "landing" : {
+            "hero" : {
+                "version" : "{version} is out now",
+                "about" : "Modern web application framework",
+                "personality" : "Simple, robust, cozy."
+            },
+            "features" : {
+                "title" : "Everything you need",
+                "subtitle" : "Simple, but confident"
+            },
+            "example" : {
+                "0" : {
+                    "title" : "Code that feels like home",
+                    "subtitle" : "Autumn leverages Python's type hints and decorators to create a declarative, clean API."
+                },
+                "1" : {
+                    "title" : "Dependency Injection done right",
+                    "subtitle" : "No magic globals. Clear dependencies, explicit wiring, predictable behavior."
+                }
+            },
+            "marketing" : {
+                "title" : "Why Autumn?",
+                "subtitle" : "We love the existing ecosystem, but we wanted something opinionated about code structure."
+            },
+            "documentation" : {
+                "title" : "Dive into the docs"
+            }
+        }
+    },
+    "data" : {
+        "features" : {
+            "api" : {
+                "title" : "Minimal API",
+                "description" : "Decorator-based routing with clean, intuitive controllers"
+            },            
+            "di" : {
+                "title" : "Dependency Injection",
+                "description" : "Simple and explicit dependency injection system"
+            },            
+            "configuration" : {
+                "title" : "Configuration Classes",
+                "description" : "Typed configuration via JSON, YAML, and environment variables"
+            },            
+            "hooks" : {
+                "title" : "Hooks & Middlewares",
+                "description" : "Flexible lifecycle hooks and route-level middleware"
+            },            
+            "websocket" : {
+                "title" : "WebSockets",
+                "description" : "Built-in support for real-time communication"
+            },
+            "documentation" : {
+                "title" : "Documentation",
+                "description" : "Auto-generated OpenAPI docs and dependency graph"
+            }
+        },
+        "comparision" : {
+            "0" : {
+                "title" : "Not FastAPI",
+                "description": "Like FastAPI, but with a built-in dependency injection system that keeps your architecture clean."
+            },
+            "1" : {
+                "title" : "Not Flask",
+                    "description": "Everything Flask gives you, plus the tools you usually end up adding yourself."
+            },
+            "2" : {
+                "title" : "Not Django",
+                "description" : "All the power, none of the 47 settings files."
+            }
+        },
+        "documentation" : {
+            "get_started" : {
+                "title" : "Get started",
+                "description" : "Installation and your first app"
+            },
+            "concepts" : {
+                "title" : "Concepts",
+                "description" : "DI, configuration, and much more"
+            },
+            "examples" : {
+                "title" : "Examples",
+                "description" : "Real-world code snippets"
+            },
+            "documentation" : {
+                "title" : "Documentation",
+                "description" : "Detailed framework API reference"
+            }
+        }
+    }
+}
