@@ -1,9 +1,9 @@
 <template>
     <div class="bg-autumn-bg text-autumn-text">
-        <section id="hero" class="h-screen flex flex-col items-center justify-center text-center relative px-4">
+        <section id="hero" class="relative flex min-h-[100svh] flex-col items-center justify-center px-4 pt-24 pb-16 text-center sm:px-6 md:h-screen md:py-0">
             <Leaf class="w-16 h-16 text-autumn-accent mb-6" />
             
-            <h1 class="text-6xl font-bold mb-3">
+            <h1 class="mb-3 text-4xl sm:text-5xl md:text-6xl font-bold">
                 {{ name }}
             </h1>
             
@@ -11,22 +11,23 @@
                 {{ $t('page.landing.hero.version', { version })}}
             </Badge>
 
-            <p class="text-xl text-autumn-text-secondary mb-10 max-w-xl">
+            <p class="mb-8 max-w-xl text-base text-autumn-text-secondary sm:text-lg md:mb-10 md:text-xl">
                 {{ $t('page.landing.hero.about')}}
                 <br>
                 {{ $t('page.landing.hero.personality')}}
             </p>
 
-            <div class="flex gap-4 justify-center">
+            <div class="flex w-full max-w-sm flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
                 <ButtonPrimary
                     size="lg" 
+                    class="w-full sm:w-auto"
                     
                     @click="() => router.push('/documentation/get-started')" 
                 >
                     {{ $t('common.cta') }}
                 </ButtonPrimary>
                 
-                <ButtonLink :href="github">
+                <ButtonLink :href="github" class="w-full sm:w-auto">
                     <Github :size="20" class="inline mr-2" />
                     GitHub
                 </ButtonLink>
@@ -34,24 +35,24 @@
 
             <div
                 @click="scrollToIndex(1)"
-                class="absolute bottom-10 flex flex-col items-center gap-2 text-autumn-text-muted animate-pulse cursor-pointer"
+                class="absolute bottom-10 hidden cursor-pointer flex-col items-center gap-2 text-autumn-text-muted animate-pulse md:flex"
             >
                 <span class="text-xs">scroll</span>
                 <ChevronDown :size="20" class="animate-bounce" />
             </div>
         </section>
 
-        <section id="features" class="h-screen flex flex-col items-center justify-center px-4">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold mb-2">
+        <section id="features" class="flex min-h-[100svh] flex-col items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+            <div class="mb-8 text-center md:mb-10">
+                <h2 class="mb-2 text-2xl sm:text-3xl font-bold">
                     {{ $t('page.landing.features.title') }}
                 </h2>
-                <p class="text-autumn-text-secondary">
+                <p class="text-sm text-autumn-text-secondary sm:text-base">
                     {{ $t('page.landing.features.subtitle') }}
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+            <div class="grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
                 <CardFeature 
                     v-for="feature in localizedFeatures" 
                     :key="feature.title" 
@@ -61,11 +62,11 @@
             </div>
         </section>
 
-        <section class="h-screen flex items-center justify-center px-4">
-            <div class="flex flex-col gap-16 max-w-6xl w-full">
-                <div class="grid md:grid-cols-2 gap-10 items-center">
-                    <div>
-                        <h2 class="text-3xl font-bold mb-4">
+        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+            <div class="flex w-full max-w-6xl flex-col gap-12 md:gap-16">
+                <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10">
+                    <div class="text-center md:text-left">
+                        <h2 class="mb-4 text-2xl sm:text-3xl font-bold">
                             {{ $t('page.landing.example.0.title') }}
                         </h2>
 
@@ -77,11 +78,11 @@
                     <DocumentationCode :tabs="codeExamplesController" />
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10">
                     <DocumentationCode :tabs="codeExampleDependencyInjection" />
 
-                    <div>
-                        <h2 class="text-3xl font-bold mb-4">
+                    <div class="text-center md:text-left">
+                        <h2 class="mb-4 text-2xl sm:text-3xl font-bold">
                             {{ $t('page.landing.example.1.title') }}                            
                         </h2>
 
@@ -97,11 +98,11 @@
             </div>
         </section>
 
-        <section class="h-screen flex items-center justify-center px-4">
-            <div class="max-w-6xl w-full flex flex-col gap-10">
+        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+            <div class="flex w-full max-w-6xl flex-col gap-10">
                 <div>
-                    <div class="text-center mb-8">
-                        <h2 class="text-3xl font-bold mb-2">
+                    <div class="mb-8 text-center">
+                        <h2 class="mb-2 text-2xl sm:text-3xl font-bold">
                             {{ $t('page.landing.marketing.title') }}   
                         </h2>
                         <p class="text-autumn-text-secondary max-w-lg mx-auto">
@@ -109,7 +110,7 @@
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
                         <CardBetterThan
                             v-for="card in localizedComparision"
                             :key="card.title"
@@ -123,13 +124,13 @@
             </div>
         </section>
 
-        <section class="h-screen flex items-center justify-center px-4">
-            <div class="max-w-7xl w-full">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">{{ $t('page.landing.documentation.title') }}</h2>
+        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+            <div class="w-full max-w-7xl">
+                <div class="mb-10 text-center md:mb-12">
+                    <h2 class="mb-4 text-2xl sm:text-3xl font-bold">{{ $t('page.landing.documentation.title') }}</h2>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <CardDocumentation 
                         v-for="card in localizedDocumentation" 
                         :key="card.title"
@@ -150,6 +151,7 @@
     const router = useRouter()
     const config = useRuntimeConfig()
     const { t } = useI18n()
+    const isDesktop = useMediaQuery('(min-width: 768px)')
 
     const name = config.public.name
     const version = config.public.version
@@ -187,6 +189,9 @@
     }
 
     const handleWheel = (event: WheelEvent) => {
+        if(!isDesktop.value)
+            return
+
         if(isScrolling.value) {
             event.preventDefault()
             return

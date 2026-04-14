@@ -1,5 +1,5 @@
 <template>
-    <div class="p-6 rounded-xl bg-autumn-bg-card/50 backdrop-blur-sm border border-autumn-border hover:border-autumn-accent/50 transition-colors duration-300">
+    <div class="h-full p-5 sm:p-6 rounded-xl bg-autumn-bg-card/50 backdrop-blur-sm border border-autumn-border hover:border-autumn-accent/50 transition-colors duration-300">
         <component
             :is="icon" 
         

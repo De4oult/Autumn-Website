@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-lg overflow-hidden border border-autumn-border bg-[#15110e]/50 backdrop-blur-xs shadow-lg">
+    <div class="w-full rounded-lg overflow-hidden border border-autumn-border bg-[#15110e]/50 backdrop-blur-xs shadow-lg">
         <div
             class="relative flex border-b border-autumn-border bg-autumn-bg-card/40 overflow-x-auto overflow-y-hidden"
         >
@@ -8,7 +8,7 @@
                 :key="tab.name"
                 ref="tabsRefs"
 
-                class="px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors duration-300"
+                class="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap transition-colors duration-300"
 
                 :class="i === activeTab
                     ? 'text-autumn-accent'
@@ -33,7 +33,7 @@
             />
         </div>
 
-        <div class="p-4 overflow-x-auto text-sm">
+        <div class="p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm">
             <div v-html="highlighted"></div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="p-6 rounded-2xl bg-autumn-bg-card/40 backdrop-blur-xs border border-autumn-border flex flex-col md:flex-row items-center justify-between gap-8">
-        <div>
+    <div class="p-5 sm:p-6 rounded-2xl bg-autumn-bg-card/40 backdrop-blur-xs border border-autumn-border flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+        <div class="w-full text-center md:text-left">
             <h2 class="text-xl font-bold mb-2">
                 {{ $t('component.card.benchmarks.title') }}
             </h2>

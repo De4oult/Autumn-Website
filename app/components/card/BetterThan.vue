@@ -1,5 +1,5 @@
 <template>
-    <div class="p-6 rounded-xl backdrop-blur-sm border border-autumn-border">
+    <div class="h-full p-5 sm:p-6 rounded-xl backdrop-blur-sm border border-autumn-border">
         <h3 class="text-lg font-bold mb-2">
             {{ title }}
         </h3>
