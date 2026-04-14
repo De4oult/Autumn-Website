@@ -1,0 +1,12 @@
+title: Autumn release notes and framework milestones.
+description: See how Autumn evolves with each release — from core updates to new capabilities.
+
+releases:
+  - version: v0.1.0
+    date: April 14, 2026
+    changes:
+      - Basic routing and controller support.
+      - Dependency Injection Container
+      - Declarative Configuration
+      - Auto-generated OpenAPI docs and dependency graph
+      - ASGI integration with Uvicorn.

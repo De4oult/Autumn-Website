@@ -1,7 +1,8 @@
 {
     "common" : {
         "cta" : "Get Started",
-        "examples" : "View more examples"
+        "examples" : "View more examples",
+        "page_in_progress" : "Page in progress"
     },
     "component" : {
         "header" : {
@@ -52,6 +53,25 @@
             "documentation" : {
                 "title" : "Dive into the docs"
             }
+        },
+        "documentation" : {
+            "title" : "Documentation",
+            "subtitle" : "We are carefully preparing the docs so they feel clear, calm, and genuinely useful. For now, Autumn is still growing like a warm project on an autumn evening."
+        },
+        "error" : {
+            "eyebrow" : "404 error",
+            "title" : "The page drifted away with the leaves",
+            "subtitle" : "The address you opened does not lead anywhere anymore. The rest of Autumn is still here: calm, warm, and ready to guide you back.",
+            "home" : "Go home",
+            "github" : "View on GitHub",
+            "status_label" : "Status",
+            "status_title" : "What happened?",
+            "status_body" : "Usually this means the link is outdated, the address was typed incorrectly, or the page has not been published yet.",
+            "status_hint" : "Try the homepage to find your way again."
+        },
+        "releases" : {
+            "title" : "Releases",
+            "changes" : "Changes in this release"
         }
     },
     "data" : {
@@ -112,6 +132,34 @@
                 "title" : "Documentation",
                 "description" : "Detailed framework API reference"
             }
+        }
+    },
+    "seo" : {
+        "site" : {
+            "description" : "Autumn is a modern Python web application framework with dependency injection, clean architecture, typed configuration, and a cozy developer experience.",
+            "image_alt" : "Autumn Framework social preview card"
+        },
+        "home" : {
+            "title" : "Python Web Application Framework",
+            "description" : "Autumn is a modern Python web application framework with dependency injection, typed configuration, clean architecture, and a cozy developer experience.",
+            "social_title" : "Autumn Framework",
+            "social_description" : "A modern Python web application framework focused on clean architecture and dependency injection."
+        },
+        "documentation" : {
+            "title" : "Documentation",
+            "description" : "Read the Autumn framework documentation, guides, and API references as the project steadily grows."
+        },
+        "roadmap" : {
+            "title" : "Roadmap",
+            "description" : "Explore the Autumn framework roadmap: documentation, tooling, developer experience, and architecture priorities."
+        },
+        "releases" : {
+            "title" : "Releases",
+            "description" : "Browse Autumn release notes, changelog updates, and framework milestones."
+        },
+        "error" : {
+            "title" : "Page not found",
+            "description" : "The requested page could not be found on the Autumn Framework website."
         }
     }
 }

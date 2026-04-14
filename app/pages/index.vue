@@ -1,6 +1,6 @@
 <template>
     <div class="bg-autumn-bg text-autumn-text">
-        <section id="hero" class="relative flex min-h-[100svh] flex-col items-center justify-center px-4 pt-24 pb-16 text-center sm:px-6 md:h-screen md:py-0">
+        <section id="hero" class="relative flex min-h-svh flex-col items-center justify-center px-4 pt-24 pb-16 text-center sm:px-6 md:h-screen md:py-0">
             <Leaf class="w-16 h-16 text-autumn-accent mb-6" />
             
             <h1 class="mb-3 text-4xl sm:text-5xl md:text-6xl font-bold">
@@ -42,7 +42,7 @@
             </div>
         </section>
 
-        <section id="features" class="flex min-h-[100svh] flex-col items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+        <section id="features" class="flex min-h-svh flex-col items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
             <div class="mb-8 text-center md:mb-10">
                 <h2 class="mb-2 text-2xl sm:text-3xl font-bold">
                     {{ $t('page.landing.features.title') }}
@@ -62,7 +62,7 @@
             </div>
         </section>
 
-        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+        <section id="examples" class="flex min-h-svh items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
             <div class="flex w-full max-w-6xl flex-col gap-12 md:gap-16">
                 <div class="grid items-center gap-8 md:grid-cols-2 md:gap-10">
                     <div class="text-center md:text-left">
@@ -98,7 +98,7 @@
             </div>
         </section>
 
-        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+        <section id="benchmark" class="flex min-h-svh items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
             <div class="flex w-full max-w-6xl flex-col gap-10">
                 <div>
                     <div class="mb-8 text-center">
@@ -124,7 +124,7 @@
             </div>
         </section>
 
-        <section class="flex min-h-[100svh] items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
+        <section id="documentation" class="flex min-h-svh items-center justify-center px-4 py-24 sm:px-6 md:h-screen md:py-0">
             <div class="w-full max-w-7xl">
                 <div class="mb-10 text-center md:mb-12">
                     <h2 class="mb-4 text-2xl sm:text-3xl font-bold">{{ $t('page.landing.documentation.title') }}</h2>
@@ -157,6 +157,18 @@
     const name = config.public.name
     const version = config.public.version
     const github = config.public.github
+    const siteName = `${config.public.name} Framework`
+
+    useHead(() => ({
+        title : t('seo.home.title'),
+        meta  : [
+            { name : 'description', content : t('seo.home.description') },
+            { property : 'og:title', content : t('seo.home.social_title') || siteName },
+            { property : 'og:description', content : t('seo.home.social_description') },
+            { name : 'twitter:title', content : t('seo.home.social_title') || siteName },
+            { name : 'twitter:description', content : t('seo.home.social_description') }
+        ]
+    }))
 
     const isScrolling = ref(false)
 

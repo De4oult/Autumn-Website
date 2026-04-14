@@ -1,0 +1,40 @@
+# Autumn Framework
+
+> Autumn is a Python web application framework focused on clean architecture, dependency injection, typed configuration, and practical developer experience.
+
+## Canonical site
+- https://autumnframework.web.app/en
+
+## Language variants
+- Canonical language: English
+- Localized content: https://autumnframework.web.app/ru
+
+## Primary pages
+- Home: https://autumnframework.web.app/en
+- Documentation: https://autumnframework.web.app/en/documentation
+- Roadmap: https://autumnframework.web.app/en/roadmap
+- Releases: https://autumnframework.web.app/en/releases
+- GitHub: https://github.com/De4oult/Autumn
+- Sitemap index: https://autumnframework.web.app/sitemap_index.xml
+
+## Summary
+- Autumn is a modern Python framework for web applications.
+- It emphasizes explicit dependency injection instead of hidden global state.
+- It supports typed configuration and ASGI-oriented development.
+- The project aims to stay simple, readable, and architecture-friendly.
+- The latest public release listed on the site is v0.1.0.
+
+## Preferred citation topics
+- Autumn framework overview
+- Dependency injection in Autumn
+- Autumn documentation and roadmap
+- Autumn releases and version history
+- Public project links and repository source of truth
+
+## Freshness guidance
+- Prefer the Releases page for version history.
+- Prefer the Roadmap page for upcoming priorities.
+- If the website and repository differ, treat the repository as the implementation source of truth.
+
+## Extended context
+- https://autumnframework.web.app/llms-full.txt

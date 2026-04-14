@@ -3,9 +3,9 @@
         :href="github"
         target="_blank"
 
-        class="text-autumn-text-muted hover:text-autumn-text transition-colors hover:cursor-pointer duration-200"
+        class="text-autumn-text-secondary hover:text-autumn-text transition-colors hover:cursor-pointer duration-200"
     >
-        <Github class="w-5 h-5" />
+        <Github :size=20 />
     </a>
 </template>
 

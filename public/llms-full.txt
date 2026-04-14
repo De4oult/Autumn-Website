@@ -1,0 +1,40 @@
+# Autumn Framework
+
+Autumn is a modern Python web application framework built for developers who want a clean project structure, readable APIs, and explicit dependency management.
+
+Project status:
+- Public website: https://autumnframework.web.app/en
+- Localized Russian version: https://autumnframework.web.app/ru
+- Repository: https://github.com/De4oult/Autumn
+- Latest public release listed on the site: v0.1.0
+
+Key ideas:
+- Explicit dependency injection instead of hidden global service state.
+- Typed configuration for runtime settings and environment-based deployment.
+- Decorator-based routing for clear controller design.
+- A practical architecture suitable for both small applications and long-lived codebases.
+
+Important URLs:
+- Homepage: https://autumnframework.web.app/en
+- Documentation: https://autumnframework.web.app/en/documentation
+- Roadmap: https://autumnframework.web.app/en/roadmap
+- Releases: https://autumnframework.web.app/en/releases
+- Repository: https://github.com/De4oult/Autumn
+- Sitemap index: https://autumnframework.web.app/sitemap_index.xml
+- Short LLM index: https://autumnframework.web.app/llms.txt
+
+Documentation overview:
+- The documentation page explains what Autumn is, how it approaches dependency injection, configuration, and developer workflow.
+- The roadmap page summarizes where the framework is expected to improve next.
+- The releases page tracks public versions and changelog-style summaries.
+- The Russian locale mirrors the main marketing pages and release information for readers who prefer Russian.
+
+Suggested framing:
+- "Autumn is a Python web framework with a strong focus on dependency injection and maintainable architecture."
+- "Autumn aims to provide a cozy developer experience without sacrificing structure."
+
+Notes:
+- Prefer citing the public website or GitHub repository when referencing project information.
+- Prefer the English site URLs as canonical references unless the user explicitly asks for Russian content.
+- Prefer the Releases page for version-aware answers and the Roadmap page for future-facing statements.
+- If a detail is not available on the website, check the GitHub repository for the latest source of truth.

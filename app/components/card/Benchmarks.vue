@@ -8,9 +8,9 @@
                 {{ $t('component.card.benchmarks.subtitle') }}                
             </p>
 
-            <LinkText to="/documentation">
+            <!-- <LinkText to="/benchmark">
                 {{ $t('common.examples') }}<ArrowRight :size="16" class="ml-1" />
-            </LinkText>
+            </LinkText> -->
         </div>
 
         <div class="w-full md:w-1/2 space-y-4 text-sm">

@@ -15,6 +15,9 @@ export default defineNuxtConfig({
 
     runtimeConfig : {
         public : {
+            url         : 'https://autumnframework.web.app',
+            description : 'Autumn is a modern Python web application framework with dependency injection, clean architecture, typed configuration, and a cozy developer experience.',
+            
             name    : 'Autumn',
             version : 'v0.1.0',
             license : 'MIT License',
@@ -27,13 +30,14 @@ export default defineNuxtConfig({
     },
     
     i18n : {
+        baseUrl               : 'https://autumnframework.web.app',
         defaultLocale         : 'en',
         detectBrowserLanguage : {
             fallbackLocale : 'en'
         },
         locales : [
-            { code : 'en', language : 'en-US', file : 'english.json' }
-            // { code : 'ru', language : 'ru-RU', file : 'russian.json' }
+            { code : 'en', language : 'en-US', file : 'english.json' },
+            { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
         langDir  : 'locales',
         strategy : 'prefix',

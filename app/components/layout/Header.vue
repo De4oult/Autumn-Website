@@ -3,7 +3,7 @@
         <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center min-w-0">
-                    <NuxtLink to="/" class="flex items-center gap-2 group">
+                    <NuxtLink :to="localePath('/')" class="flex items-center gap-2 group">
                         <Leaf class="w-6 h-6 text-autumn-accent group-hover:text-autumn-accent-dark transition-colors" />
                         <span class="font-bold text-lg sm:text-xl tracking-tight text-autumn-text truncate">
                             {{ name }}
@@ -14,11 +14,11 @@
                         <NuxtLink
                             v-for="link in navLinks"
 
-                            :key="link.path"
+                            :key="link.key"
                             :to="link.path"
 
                             class="text-sm font-medium transition-colors hover:text-autumn-accent"
-                            :class="isActive(link.path) && link.path !== '/' 
+                            :class="isActive(link.basePath)
                                 ? 'text-autumn-accent' 
                                 : 'text-autumn-text-secondary'"
                         >
@@ -28,7 +28,55 @@
                 </div>
 
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <ButtonGithub />
+                    <div ref="localeMenuRef" class="relative">
+                        <button
+                            type="button"
+
+                            class="flex items-center gap-1 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-autumn-text transition-colors hover:text-autumn-accent hover:cursor-pointer duration-300"
+                            
+                            :aria-expanded="isLocaleMenuOpen ? 'true' : 'false'"
+                            aria-haspopup="menu"
+                            @click="toggleLocaleMenu"
+                        >
+                            <span>{{ currentLocaleLabel }}</span>
+                            <ChevronDown
+                                class="h-3.5 w-3.5 transition-transform duration-200"
+                                :class="isLocaleMenuOpen ? 'rotate-180' : ''"
+                            />
+                        </button>
+
+                        <AnimatePresence>
+                            <motion.div
+                                v-if="isLocaleMenuOpen"
+
+                                class="absolute right-0 top-full z-30 mt-2 space-y-1 min-w-20 overflow-hidden rounded-lg border border-autumn-border bg-autumn-bg/95 p-1 shadow-2xl backdrop-blur-xl"
+                                
+                                :initial="{ opacity: 0, y: -8, scale: 0.96 }"
+                                :animate="{ opacity: 1, y: 0, scale: 1 }"
+                                :exit="{ opacity: 0, y: -6, scale: 0.98 }"
+                                :transition="{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }"
+                            >
+                                <NuxtLink
+                                    v-for="option in localeOptions"
+
+                                    :key="option.code"
+                                    :to="option.path"
+
+                                    class="flex items-center justify-between rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-colors"
+                                    :class="locale === option.code
+                                        ? 'bg-autumn-bg-hover text-autumn-accent'
+                                        : 'text-autumn-text-secondary hover:bg-autumn-bg-hover hover:text-autumn-text'"
+
+                                    :aria-current="locale === option.code ? 'true' : undefined"
+                                    @click="closeLocaleMenu"
+                                >
+                                    <span>{{ option.label }}</span>
+                                </NuxtLink>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    <ButtonGithub class="mr-1" />
 
                     <div class="hidden md:flex">
                         <ButtonPrimary
@@ -122,7 +170,7 @@
                 >
                     <motion.div
                         v-for="link in navLinks"
-                        :key="link.path"
+                        :key="link.key"
                         :initial="{ opacity: 0, y: -8 }"
                         :animate="{ opacity: 1, y: 0 }"
                         :exit="{ opacity: 0, y: -6 }"
@@ -132,7 +180,7 @@
                             :to="link.path"
                             @click="closeMenu"
                             class="block px-3 py-3 rounded-md text-base font-medium"
-                            :class="isActive(link.path) && link.path !== '/' 
+                            :class="isActive(link.basePath)
                                 ? 'bg-autumn-bg-hover text-autumn-accent'
                                 : 'text-autumn-text-secondary hover:bg-autumn-bg-hover hover:text-autumn-text'"
                         >
@@ -163,39 +211,84 @@
 </template>
 
 <script setup lang="ts">
-    import { AnimatePresence, motion } from 'motion-v'
-    import { Leaf, Menu, X }           from 'lucide-vue-next'
+    import { AnimatePresence, motion }    from 'motion-v'
+    import { ChevronDown, Leaf, Menu, X } from 'lucide-vue-next'
 
     const route = useRoute()
     const router = useRouter()
     const config = useRuntimeConfig()
+    const { t, locale, locales } = useI18n()
     const localePath = useLocalePath()
+    const switchLocalePath = useSwitchLocalePath()
 
     const name = config.public.name
 
     const isMobileMenuOpen = ref(false)
+    const isLocaleMenuOpen = ref(false)
+    const localeMenuRef = ref<HTMLElement | null>(null)
 
     const navLinks = computed(() => [
+        { 
+            key      : 'documentation',
+            name     : t('component.header.routes.documentation'),
+            basePath : '/documentation',
+            path     : localePath('/documentation')
+        },
         // { 
-        //     name : $t('component.header.routes.documentation'), 
-        //     path : '/documentation' 
+        //     key      : 'benchmarks',
+        //     name     : t('component.header.routes.benchmarks'),
+        //     basePath : '/benchmarks',
+        //     path     : localePath('/benchmarks')
         // },
-        // { 
-        //     name : $t('component.header.routes.benchmarks'), 
-        //     path : '/benchmarks' 
-        // },
-        // { 
-        //     name : $t('component.header.routes.roadmap'), 
-        //     path : '/roadmap' 
-        // },
-        // { 
-        //     name : $t('component.header.routes.releases'), 
-        //     path : '/releases' 
-        // }
+        { 
+            key      : 'roadmap',
+            name     : t('component.header.routes.roadmap'),
+            basePath : '/roadmap',
+            path     : localePath('/roadmap')
+        },
+        { 
+            key      : 'releases',
+            name     : t('component.header.routes.releases'),
+            basePath : '/releases',
+            path     : localePath('/releases')
+        }
     ])
 
-    const isActive = (path: string): boolean => route.path.startsWith(path)
+    const localeOptions = computed(() => locales.value.map(option => {
+        const code = typeof option === 'string' ? option : option.code
+
+        return {
+            code,
+            label : code.toUpperCase(),
+            path  : switchLocalePath(code)
+        }
+    }))
+
+    const currentLocaleLabel = computed(() => locale.value.toUpperCase())
+
+    const normalizePath = (path: string): string => {
+        if(path === '/')
+            return '/'
+
+        return path.replace(/\/+$/, '')
+    }
+
+    const isActive = (path: string): boolean => {
+        const currentPath = normalizePath(route.path)
+        const targetPath = normalizePath(localePath(path))
+
+        return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`)
+    }
 
     const toggleMenu = (): boolean => isMobileMenuOpen.value = !isMobileMenuOpen.value
     const closeMenu = (): boolean => isMobileMenuOpen.value = false
+    const toggleLocaleMenu = (): boolean => isLocaleMenuOpen.value = !isLocaleMenuOpen.value
+    const closeLocaleMenu = (): boolean => isLocaleMenuOpen.value = false
+
+    onClickOutside(localeMenuRef, () => closeLocaleMenu())
+
+    watch(() => route.fullPath, () => {
+        closeMenu()
+        closeLocaleMenu()
+    })
 </script>
