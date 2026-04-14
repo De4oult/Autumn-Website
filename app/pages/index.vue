@@ -22,7 +22,7 @@
                     size="lg" 
                     class="w-full sm:w-auto"
                     
-                    @click="() => router.push('/documentation/get-started')" 
+                    @click="() => router.push(localePath('/documentation'))" 
                 >
                     {{ $t('common.cta') }}
                 </ButtonPrimary>
@@ -90,7 +90,7 @@
                             {{ $t('page.landing.example.1.subtitle') }}                            
                         </p>
 
-                        <LinkText to="/documentation/examples">
+                        <LinkText to="/documentation">
                             {{ $t('common.examples') }} <ArrowRight :size="16" class="ml-1" />
                         </LinkText>
                     </div>
@@ -152,6 +152,7 @@
     const config = useRuntimeConfig()
     const { t } = useI18n()
     const isDesktop = useMediaQuery('(min-width: 768px)')
+    const localePath = useLocalePath()
 
     const name = config.public.name
     const version = config.public.version

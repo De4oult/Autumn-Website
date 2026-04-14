@@ -63,19 +63,19 @@ export const documentation = [
         icon        : Terminal,
         title       : 'data.documentation.get_started.title',
         description : 'data.documentation.get_started.description',
-        to          : '/documentation/get-started'
+        to          : '/documentation'
     },
     {
         icon        : BookOpen,
         title       : 'data.documentation.concepts.title',
         description : 'data.documentation.concepts.description',
-        to          : '/documentation/concepts'
+        to          : '/documentation'
     },
     {
         icon        : Code,
         title       : 'data.documentation.examples.title',
         description : 'data.documentation.examples.description',
-        to          : '/documentation/examples'
+        to          : '/documentation'
     },
     {
         icon        : FileText,

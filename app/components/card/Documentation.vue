@@ -1,6 +1,6 @@
 <template>
     <NuxtLink
-        :to="to"
+        :to="localizedTo"
         
         class="block h-full p-5 sm:p-6 rounded-xl bg-autumn-bg-card/40 backdrop-blur-sm border border-autumn-border hover:border-autumn-accent/50 hover:bg-autumn-bg-hover transition-all hover:cursor-pointer duration-300"
     >
@@ -20,10 +20,13 @@
 </template>
 
 <script setup lang="ts">
-    defineProps<{
+    const props = defineProps<{
         icon: any
         title: string
         description: string
         to?: string
     }>()
+
+    const localePath = useLocalePath()
+    const localizedTo = computed(() => props.to ? localePath(props.to) : localePath('/documentation'))
 </script>

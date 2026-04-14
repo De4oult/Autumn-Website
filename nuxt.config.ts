@@ -32,11 +32,12 @@ export default defineNuxtConfig({
             fallbackLocale : 'en'
         },
         locales : [
-            { code : 'en', language : 'en-US', file : 'english.json' },
-            { code : 'ru', language : 'ru-RU', file : 'russian.json' }
+            { code : 'en', language : 'en-US', file : 'english.json' }
+            // { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
         langDir  : 'locales',
-        strategy : 'prefix'
+        strategy : 'prefix',
+        vueI18n  : './i18n.config.ts'
     },
 
     css : [

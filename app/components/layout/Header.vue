@@ -34,7 +34,7 @@
                         <ButtonPrimary
                             size="md" 
                         
-                            @click="() => router.push('/documentation/get-started')" 
+                            @click="() => router.push(localePath('/documentation'))" 
                         >
                             {{ $t('common.cta') }}
                         </ButtonPrimary>
@@ -147,7 +147,7 @@
                         :transition="{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }"
                     >
                         <NuxtLink
-                            to="/documentation/get-started"
+                            :to="localePath('/documentation')"
                             
                             class="block px-3 py-3 mt-4 rounded-md text-base font-medium bg-autumn-accent text-autumn-bg text-center"
                             
@@ -169,6 +169,7 @@
     const route = useRoute()
     const router = useRouter()
     const config = useRuntimeConfig()
+    const localePath = useLocalePath()
 
     const name = config.public.name
 
