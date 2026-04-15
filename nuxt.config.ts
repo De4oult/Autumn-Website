@@ -74,6 +74,10 @@ export default defineNuxtConfig({
         name : 'Autumn Framework'
     },
 
+    sitemap : {
+        xsl : false
+    },
+
     fonts : {
         families : [
             {
