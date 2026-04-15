@@ -75,7 +75,21 @@ export default defineNuxtConfig({
     },
 
     sitemap : {
+        urls : [
+            '/en',
+            '/ru'
+        ],
         xsl : false
+    },
+
+    nitro : {
+        prerender : {
+            routes : [
+                '/sitemap_index.xml',
+                '/__sitemap__/en-US.xml',
+                '/__sitemap__/ru-RU.xml'
+            ]
+        }
     },
 
     fonts : {
