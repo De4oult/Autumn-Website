@@ -36,7 +36,7 @@
                     </div>
 
                     <div
-                        class="rounded-xl border border-autumn-border bg-autumn-bg-card/40 p-6 backdrop-blur-xs transition-all"
+                        class="rounded-xl border border-autumn-border bg-autumn-bg-card/40 p-6 backdrop-blur-sm transition-all"
                         :class="{
                             'border-autumn-accent/50 shadow-[0_0_15px_rgba(243,156,18,0.1)]':
                                 phase.status === 'in-progress'

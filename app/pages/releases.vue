@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="md:w-3/4 rounded-xl border border-autumn-border bg-autumn-bg-card/70 p-6">
+                <div class="md:w-3/4 rounded-xl border border-autumn-border bg-autumn-bg-card/40 backdrop-blur-sm p-6">
                     <h2 class="mb-4 text-lg font-semibold text-autumn-text">
                         {{ $t('page.releases.changes') }}
                     </h2>
