@@ -11,7 +11,7 @@
 
         <main class="relative z-10 flex min-h-screen items-center px-4 py-16 sm:px-6">
             <div class="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-center">
-                <section class="rounded-4xl border border-autumn-border bg-autumn-bg-card/45 p-8 shadow-[0_30px_120px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:p-10">
+                <section class="rounded-2xl border border-autumn-border bg-autumn-bg-card/45 p-8 shadow-[0_30px_120px_rgba(0,0,0,0.22)] backdrop-blur-xl sm:p-10">
                     <p class="mb-5 inline-flex items-center rounded-full border border-autumn-accent/20 bg-autumn-accent/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-autumn-accent">
                         {{ $t('page.error.eyebrow') }}
                     </p>
@@ -47,9 +47,9 @@
                     </div>
                 </section>
 
-                <aside class="rounded-4xl border border-autumn-border bg-autumn-bg/72 p-7 shadow-[0_24px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:p-8">
+                <aside class="rounded-2xl border border-autumn-border bg-autumn-bg/72 p-7 shadow-[0_24px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:p-8">
                     <div class="flex items-center justify-between">
-                        <div class="rounded-2xl border border-autumn-border-light bg-autumn-bg-card/70 px-4 py-3">
+                        <div class="rounded-xl border border-autumn-border-light bg-autumn-bg-card/70 px-4 py-3">
                             <div class="text-xs uppercase tracking-[0.28em] text-autumn-text-muted">
                                 {{ $t('page.error.status_label') }}
                             </div>
@@ -73,7 +73,7 @@
                         </p>
                     </div>
 
-                    <div class="mt-6 rounded-2xl border border-autumn-border bg-autumn-bg-card/55 p-5">
+                    <div class="mt-6 rounded-xl border border-autumn-border bg-autumn-bg-card/55 p-5">
                         <p class="text-sm leading-7 text-autumn-text-secondary">
                             {{ $t('page.error.status_hint') }}
                         </p>
