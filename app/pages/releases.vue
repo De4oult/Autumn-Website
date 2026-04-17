@@ -164,7 +164,7 @@
             }
 
             parts.push({
-                type  : match[0] === 'Breaking:'
+                type : match[0] === 'Breaking:'
                     ? 'breaking'
                     : match[0].startsWith('`')
                         ? 'inline'
