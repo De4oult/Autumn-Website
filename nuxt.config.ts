@@ -19,7 +19,7 @@ export default defineNuxtConfig({
             description : 'Autumn is a modern Python web application framework with dependency injection, clean architecture, typed configuration, and a cozy developer experience.',
             
             name    : 'Autumn',
-            version : 'v0.1.0',
+            version : 'v0.1.1',
             license : 'MIT License',
             
             author       : '@de4oult',
@@ -44,8 +44,9 @@ export default defineNuxtConfig({
             statusCode : 301,
             path       : '/'
         },
-        strategy : 'prefix',
-        vueI18n  : './i18n.config.ts'
+        strategy      : 'prefix',
+        trailingSlash : true,
+        vueI18n       : './i18n.config.ts'
     },
 
     css : [

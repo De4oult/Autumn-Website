@@ -4,63 +4,63 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
 >
     <url>
-        <loc>https://autumn.de4oult.online/en</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en" />
+        <loc>https://autumn.de4oult.online/en/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/ru</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en" />
+        <loc>https://autumn.de4oult.online/ru/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/en/benchmarks</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/benchmarks" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/benchmarks" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/benchmarks" />
+        <loc>https://autumn.de4oult.online/en/benchmarks/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/benchmarks/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/benchmarks/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/benchmarks/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/ru/benchmarks</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/benchmarks" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/benchmarks" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/benchmarks" />
+        <loc>https://autumn.de4oult.online/ru/benchmarks/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/benchmarks/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/benchmarks/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/benchmarks/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/en/documentation</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation" />
+        <loc>https://autumn.de4oult.online/en/documentation/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/ru/documentation</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation" />
+        <loc>https://autumn.de4oult.online/ru/documentation/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/en/releases</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/releases" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/releases" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/releases" />
+        <loc>https://autumn.de4oult.online/en/releases/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/releases/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/releases/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/releases/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/ru/releases</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/releases" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/releases" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/releases" />
+        <loc>https://autumn.de4oult.online/ru/releases/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/releases/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/releases/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/releases/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/en/roadmap</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/roadmap" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/roadmap" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/roadmap" />
+        <loc>https://autumn.de4oult.online/en/roadmap/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/roadmap/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/roadmap/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/roadmap/" />
     </url>
     <url>
-        <loc>https://autumn.de4oult.online/ru/roadmap</loc>
-        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/roadmap" />
-        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/roadmap" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/roadmap" />
+        <loc>https://autumn.de4oult.online/ru/roadmap/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/roadmap/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/roadmap/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/roadmap/" />
     </url>
 </urlset>
