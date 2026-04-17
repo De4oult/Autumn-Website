@@ -15,7 +15,7 @@
 - Roadmap: https://autumn.de4oult.online/en/roadmap
 - Releases: https://autumn.de4oult.online/en/releases
 - GitHub: https://github.com/De4oult/Autumn
-- Sitemap index: https://autumn.de4oult.online/sitemap_index.xml
+- Sitemap: https://autumn.de4oult.online/sitemap.xml
 
 ## Summary
 - Autumn is a modern Python framework for web applications.

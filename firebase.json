@@ -13,18 +13,28 @@
                 "type": 301
             },
             {
-                "source": "/sitemap.xml",
-                "destination": "/sitemap_index.xml",
+                "source": "/sitemap_index.xml",
+                "destination": "/sitemap.xml",
+                "type": 301
+            },
+            {
+                "source": "/en-US.xml",
+                "destination": "/sitemap.xml",
+                "type": 301
+            },
+            {
+                "source": "/ru-RU.xml",
+                "destination": "/sitemap.xml",
                 "type": 301
             },
             {
                 "source": "/__sitemap__/:file",
-                "destination": "/:file",
+                "destination": "/sitemap.xml",
                 "type": 301
             },
             {
                 "source": "/:locale/__sitemap__/:file",
-                "destination": "/:file",
+                "destination": "/sitemap.xml",
                 "type": 301
             }
         ],

@@ -10,8 +10,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
         '@vueuse/nuxt',
         'nuxt-charts',
-        'motion-v/nuxt',
-        '@nuxtjs/sitemap'
+        'motion-v/nuxt'
     ],
 
     runtimeConfig : {
@@ -77,22 +76,6 @@ export default defineNuxtConfig({
     site : {
         url  : 'https://autumn.de4oult.online',
         name : 'Autumn Framework'
-    },
-
-    sitemap : {
-        sitemapsPathPrefix : '/',
-        xsl                : false
-    },
-
-    nitro : {
-        prerender : {
-            routes : [
-                '/',
-                '/sitemap_index.xml',
-                '/en-US.xml',
-                '/ru-RU.xml'
-            ]
-        }
     },
 
     fonts : {
