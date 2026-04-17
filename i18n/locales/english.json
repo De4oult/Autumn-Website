@@ -162,6 +162,10 @@
             "social_title" : "Autumn Framework",
             "social_description" : "A modern Python web application framework focused on clean architecture and dependency injection."
         },
+        "benchmarks" : {
+            "title" : "Benchmarks",
+            "description" : "Compare Autumn benchmark results and see how it performs against popular Python web frameworks."
+        },
         "documentation" : {
             "title" : "Documentation",
             "description" : "Read the Autumn framework documentation, guides, and API references as the project steadily grows."
@@ -173,10 +177,6 @@
         "releases" : {
             "title" : "Releases",
             "description" : "Browse Autumn release notes, changelog updates, and framework milestones."
-        },
-        "benchmarks" : {
-            "title" : "Benchmarks",
-            "description" : "Compare Autumn benchmark results and see how it performs against popular Python web frameworks."
         },
         "error" : {
             "title" : "Page not found",
