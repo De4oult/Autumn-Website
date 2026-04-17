@@ -55,6 +55,13 @@
                                         {{ part.value }}
                                     </code>
 
+                                    <code
+                                        v-else-if="part.type === 'inline'"
+                                        class="rounded border border-sky-400/20 bg-sky-500/10 px-1.5 py-0.5 text-sm text-sky-300"
+                                    >
+                                        {{ part.value }}
+                                    </code>
+
                                     <strong
                                         v-else-if="part.type === 'breaking'"
                                         class="text-red-400"
@@ -135,13 +142,13 @@
     }
 
     type ChangePart = {
-        type: 'text' | 'code' | 'breaking'
+        type: 'text' | 'code' | 'inline' | 'breaking'
         value: string
     }
 
     const formatChange = (change: unknown): ChangePart[] => {
         const source = stringifyChange(change)
-        const pattern = /(@[a-zA-Z.]+|Breaking:)/g
+        const pattern = /(`[^`]+`|@[a-zA-Z.]+|Breaking:)/g
         const parts: ChangePart[] = []
 
         let lastIndex = 0
@@ -157,8 +164,14 @@
             }
 
             parts.push({
-                type  : match[0] === 'Breaking:' ? 'breaking' : 'code',
-                value : match[0]
+                type  : match[0] === 'Breaking:'
+                    ? 'breaking'
+                    : match[0].startsWith('`')
+                        ? 'inline'
+                        : 'code',
+                value : match[0].startsWith('`') && match[0].endsWith('`')
+                    ? match[0].slice(1, -1)
+                    : match[0]
             })
 
             lastIndex = index + match[0].length

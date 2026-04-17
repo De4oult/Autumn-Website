@@ -60,9 +60,9 @@
         },
         "error" : {
             "eyebrow" : "404 error",
-            "title" : "The page drifted away with the leaves",
-            "subtitle" : "The address you opened does not lead anywhere anymore. The rest of Autumn is still here: calm, warm, and ready to guide you back.",
-            "home" : "Go home",
+            "title" : "Not found",
+            "subtitle" : "The page you requested does not exist anymore.",
+            "home" : "Back home",
             "github" : "View on GitHub",
             "status_label" : "Status",
             "status_title" : "What happened?",
@@ -72,6 +72,23 @@
         "releases" : {
             "title" : "Releases",
             "changes" : "Changes in this release"
+        },
+        "benchmarks" : {
+            "title" : "Benchmarks",
+            "subtitle" : "Autumn is built on modern ASGI foundations, helping it stay highly competitive with the fastest Python frameworks available.",
+            "throughput" : {
+                "title" : "Throughput",
+                "subtitle" : "Requests per second"
+            },
+            "latency" : {
+                "title" : "Average Latency",
+                "subtitle" : "Milliseconds"
+            },
+            "methodology" : {
+                "title" : "Methodology",
+                "body" : "Benchmarks were run on an AWS c5.large instance using `wrk` with 4 threads and 100 connections for 30 seconds. Each framework implemented a simple JSON response endpoint returning a static dictionary.",
+                "disclaimer" : "Benchmarks are indicative. Real-world performance depends heavily on your database, ORM, and business logic. Autumn prioritizes developer experience and maintainability while keeping performance overhead minimal."
+            }
         }
     },
     "data" : {
@@ -156,6 +173,10 @@
         "releases" : {
             "title" : "Releases",
             "description" : "Browse Autumn release notes, changelog updates, and framework milestones."
+        },
+        "benchmarks" : {
+            "title" : "Benchmarks",
+            "description" : "Compare Autumn benchmark results and see how it performs against popular Python web frameworks."
         },
         "error" : {
             "title" : "Page not found",

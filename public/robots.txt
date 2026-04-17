@@ -16,4 +16,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://autumnframework.web.app/sitemap_index.xml
+Sitemap: https://autumn.de4oult.online/sitemap_index.xml

@@ -9,13 +9,14 @@ export default defineNuxtConfig({
         '@nuxt/image',
         '@nuxtjs/i18n',
         '@vueuse/nuxt',
+        'nuxt-charts',
         'motion-v/nuxt',
         '@nuxtjs/sitemap'
     ],
 
     runtimeConfig : {
         public : {
-            url         : 'https://autumnframework.web.app',
+            url         : 'https://autumn.de4oult.online',
             description : 'Autumn is a modern Python web application framework with dependency injection, clean architecture, typed configuration, and a cozy developer experience.',
             
             name    : 'Autumn',
@@ -30,7 +31,7 @@ export default defineNuxtConfig({
     },
     
     i18n : {
-        baseUrl               : 'https://autumnframework.web.app',
+        baseUrl               : 'https://autumn.de4oult.online',
         defaultLocale         : 'en',
         detectBrowserLanguage : {
             fallbackLocale : 'en'
@@ -39,7 +40,11 @@ export default defineNuxtConfig({
             { code : 'en', language : 'en-US', file : 'english.json' },
             { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
-        langDir  : 'locales',
+        langDir      : 'locales',
+        rootRedirect : {
+            statusCode : 301,
+            path       : '/'
+        },
         strategy : 'prefix',
         vueI18n  : './i18n.config.ts'
     },
@@ -70,24 +75,22 @@ export default defineNuxtConfig({
     },
 
     site : {
-        url  : 'https://autumnframework.web.app',
+        url  : 'https://autumn.de4oult.online',
         name : 'Autumn Framework'
     },
 
     sitemap : {
-        urls : [
-            '/en',
-            '/ru'
-        ],
-        xsl : false
+        sitemapsPathPrefix : '/',
+        xsl                : false
     },
 
     nitro : {
         prerender : {
             routes : [
+                '/',
                 '/sitemap_index.xml',
-                '/__sitemap__/en-US.xml',
-                '/__sitemap__/ru-RU.xml'
+                '/en-US.xml',
+                '/ru-RU.xml'
             ]
         }
     },

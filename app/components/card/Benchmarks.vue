@@ -8,9 +8,9 @@
                 {{ $t('component.card.benchmarks.subtitle') }}                
             </p>
 
-            <!-- <LinkText to="/benchmark">
+            <LinkText to="/benchmarks">
                 {{ $t('common.examples') }}<ArrowRight :size="16" class="ml-1" />
-            </LinkText> -->
+            </LinkText>
         </div>
 
         <div class="w-full md:w-1/2 space-y-4 text-sm">
@@ -42,30 +42,11 @@
     </div></template>
 
 <script lang="ts" setup>
-    import { ArrowRight } from 'lucide-vue-next'
+    import { ArrowRight }    from 'lucide-vue-next'
+    import { rawBenchmarks } from '~/data/landing'
 
     const config = useRuntimeConfig()
     const name = config.public.name
-
-    type Benchmark = {
-        name: string
-        rps: number
-    }
-
-    const rawBenchmarks: Benchmark[] = [
-        { 
-            name, 
-            rps : 1970
-        },
-        { 
-            name : 'FastAPI', 
-            rps  : 3161
-        },
-        { 
-            name : 'Flask', 
-            rps  : 1228
-        }
-    ]
 
     const maxRps = Math.max(...rawBenchmarks.map(b => b.rps))
 

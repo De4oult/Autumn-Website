@@ -229,17 +229,17 @@
 
     const navLinks = computed(() => [
         { 
+            key      : 'benchmarks',
+            name     : t('component.header.routes.benchmarks'),
+            basePath : '/benchmarks',
+            path     : localePath('/benchmarks')
+        },
+        { 
             key      : 'documentation',
             name     : t('component.header.routes.documentation'),
             basePath : '/documentation',
             path     : localePath('/documentation')
         },
-        // { 
-        //     key      : 'benchmarks',
-        //     name     : t('component.header.routes.benchmarks'),
-        //     basePath : '/benchmarks',
-        //     path     : localePath('/benchmarks')
-        // },
         { 
             key      : 'roadmap',
             name     : t('component.header.routes.roadmap'),

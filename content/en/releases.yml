@@ -1,12 +1,26 @@
-title: Autumn release notes and framework milestones.
-description: See how Autumn evolves with each release — from core updates to new capabilities.
+﻿title: Autumn release notes and key framework milestones.
+description: See how Autumn evolves from release to release — from core improvements to new capabilities.
 
 releases:
+  - version: v0.1.1
+    date: April 17, 2026
+    changes:
+      - "Reduced overhead on the HTTP request hot path"
+      - "The dependency container now uses caching more aggressively and performs less repeated work"
+      - "Controller handler execution and the internal runtime pipeline are now faster"
+      - "Routing and middleware selection have been improved on the hot path"
+      - "JSON responses and request body handling are now faster"
+      - "`dict` and `list` can now be returned directly from handlers with automatic JSON wrapping"
+      - "Added @serializable for explicit serialization of custom classes"
+      - "`Public[T]` and `Private[T]` are now available to separate public and internal fields of a serializable class"
+      - "OpenAPI now describes responses for custom serializable objects more accurately"
+      - "Added in-controller middleware methods: @middleware, @middleware.before, and @middleware.after"
+
   - version: v0.1.0
     date: April 14, 2026
     changes:
-      - Basic routing and controller support.
+      - Basic routing and controller support
       - Dependency Injection Container
-      - Declarative Configuration
-      - Auto-generated OpenAPI docs and dependency graph
-      - ASGI integration with Uvicorn.
+      - Declarative configuration
+      - Auto-generated OpenAPI documentation and dependency graph
+      - ASGI integration with Uvicorn

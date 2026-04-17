@@ -84,3 +84,28 @@ export const documentation = [
         to          : '/documentation'
     }
 ];
+
+
+interface Benchmark {
+    name : string;
+    rps : number;
+}
+
+export const rawBenchmarks: Benchmark[] = [
+    {
+        name : 'Falcon',
+        rps  : 4471
+    },
+    { 
+        name : 'Autumn', 
+        rps  : 4006
+    },
+    { 
+        name : 'FastAPI', 
+        rps  : 3644
+    },
+    { 
+        name : 'Flask', 
+        rps  : 2149
+    }
+];

@@ -3,7 +3,7 @@ description: Where we are and where we're going.
 
 items:
   - status: planned
-    version: v0.6+
+    version: v1.0+
     title: Ecosystem Expansion
     items:
       - First-class CLI for scaffolding, tooling, and project management

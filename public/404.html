@@ -3,23 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Page not found · Autumn Framework</title>
+    <title>404 · Autumn Framework</title>
     <meta name="description" content="The requested page could not be found on the Autumn Framework website.">
     <meta name="robots" content="noindex, follow">
     <style>
         :root {
             color-scheme: dark;
             --bg: #1a1512;
-            --bg-card: rgba(42, 35, 32, 0.72);
-            --bg-soft: rgba(26, 21, 18, 0.78);
+            --bg-soft: rgba(42, 35, 32, 0.72);
             --accent: #f39c12;
             --accent-dark: #e67e22;
             --text: #faf8f5;
             --text-secondary: #a89a8c;
-            --text-muted: #7a6e62;
-            --border: #3d342d;
-            --border-light: #4a3f37;
-            --shadow: 0 30px 120px rgba(0, 0, 0, 0.24);
+            --border: rgba(243, 156, 18, 0.16);
+            --shadow: 0 30px 120px rgba(0, 0, 0, 0.28);
         }
 
         * {
@@ -30,62 +27,16 @@
         body {
             margin: 0;
             min-height: 100%;
-            background:
-                radial-gradient(circle at top left, rgba(243, 156, 18, 0.16), transparent 34%),
-                radial-gradient(circle at bottom right, rgba(230, 126, 34, 0.12), transparent 30%),
-                var(--bg);
+            background: var(--bg);
             color: var(--text);
             font-family: Inter, system-ui, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            overflow: hidden;
-        }
-
-        .leaf {
-            position: absolute;
-            border-radius: 999px;
-            opacity: 0.2;
-            filter: blur(2px);
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.7), rgba(230, 126, 34, 0.25));
-        }
-
-        .leaf-1 {
-            top: 8%;
-            left: 6%;
-            width: 160px;
-            height: 56px;
-            transform: rotate(-18deg);
-        }
-
-        .leaf-2 {
-            right: 10%;
-            top: 14%;
-            width: 120px;
-            height: 44px;
-            transform: rotate(26deg);
-        }
-
-        .leaf-3 {
-            left: 12%;
-            bottom: 12%;
-            width: 132px;
-            height: 48px;
-            transform: rotate(18deg);
-        }
-
-        .leaf-4 {
-            right: 8%;
-            bottom: 8%;
-            width: 180px;
-            height: 60px;
-            transform: rotate(-24deg);
         }
 
         .shell {
-            position: relative;
-            z-index: 1;
             display: flex;
             min-height: 100vh;
             align-items: center;
@@ -93,305 +44,119 @@
             padding: 24px;
         }
 
-        .layout {
-            display: grid;
-            width: 100%;
-            max-width: 1120px;
-            gap: 24px;
-            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-        }
-
-        .panel,
-        .aside {
+        .card {
+            width: min(100%, 560px);
             border: 1px solid var(--border);
             border-radius: 32px;
+            background: var(--bg-soft);
             box-shadow: var(--shadow);
             backdrop-filter: blur(20px);
-        }
-
-        .panel {
-            background: var(--bg-card);
-            padding: 40px;
-        }
-
-        .aside {
-            background: var(--bg-soft);
-            padding: 32px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid rgba(243, 156, 18, 0.22);
-            border-radius: 999px;
-            background: rgba(243, 156, 18, 0.1);
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.28em;
-            padding: 12px 16px;
-            text-transform: uppercase;
+            padding: 56px 32px;
+            text-align: center;
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 22px 0 26px;
+            margin-bottom: 28px;
             color: var(--accent);
-        }
-
-        .brand-mark {
-            width: 34px;
-            height: 34px;
-            border-radius: 12px;
-            border: 1px solid rgba(243, 156, 18, 0.28);
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.22), rgba(230, 126, 34, 0.08));
-            box-shadow: 0 0 32px rgba(243, 156, 18, 0.16);
-        }
-
-        .brand-name {
-            color: var(--text-secondary);
             font-size: 12px;
+            font-weight: 700;
             letter-spacing: 0.3em;
             text-transform: uppercase;
         }
 
-        h1 {
+        .code {
             margin: 0;
-            max-width: 760px;
-            font-size: clamp(42px, 6vw, 68px);
-            line-height: 1.04;
+            color: var(--accent);
+            font-size: clamp(96px, 18vw, 160px);
+            font-weight: 800;
+            line-height: 0.88;
         }
 
-        .subtitle {
-            max-width: 760px;
-            margin: 22px 0 0;
-            color: var(--text-secondary);
-            font-size: 20px;
-            line-height: 1.7;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 30px;
+        .title {
+            margin: 16px 0 0;
+            font-size: clamp(24px, 5vw, 34px);
+            font-weight: 600;
+            line-height: 1.2;
+            text-transform: lowercase;
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 50px;
-            padding: 0 22px;
+            min-height: 52px;
+            margin-top: 28px;
+            padding: 0 24px;
             border-radius: 14px;
-            border: 1px solid var(--border);
-            color: var(--text);
-            text-decoration: none;
+            background: var(--accent);
+            color: #1a1512;
             font-size: 16px;
-            font-weight: 600;
-            transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 180ms ease, transform 180ms ease;
         }
 
         .button:hover {
+            background: var(--accent-dark);
             transform: translateY(-1px);
         }
 
-        .button-primary {
-            border-color: transparent;
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        .button-primary:hover {
-            background: var(--accent-dark);
-        }
-
-        .button-secondary:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .status-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .status-chip {
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            background: rgba(42, 35, 32, 0.72);
-            padding: 16px 18px;
-        }
-
-        .status-label {
-            color: var(--text-muted);
-            font-size: 12px;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-        }
-
-        .status-code {
-            margin-top: 10px;
-            color: var(--accent);
-            font-size: 44px;
-            font-weight: 800;
-        }
-
-        .status-icon {
-            width: 58px;
-            height: 58px;
-            border: 1px solid rgba(243, 156, 18, 0.22);
-            border-radius: 999px;
-            background: rgba(243, 156, 18, 0.1);
-            box-shadow: 0 0 32px rgba(243, 156, 18, 0.12);
-        }
-
-        .aside h2 {
-            margin: 28px 0 0;
-            font-size: 30px;
-            line-height: 1.2;
-        }
-
-        .aside p {
-            margin: 18px 0 0;
+        .hint {
+            margin-top: 18px;
             color: var(--text-secondary);
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .note {
-            margin-top: 22px;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            background: rgba(42, 35, 32, 0.56);
-            padding: 18px;
-        }
-
-        .footnote {
-            margin-top: 26px;
-            color: var(--text-muted);
             font-size: 14px;
+            line-height: 1.6;
         }
 
-        @media (max-width: 980px) {
-            body {
-                overflow: auto;
-            }
-
-            .layout {
-                grid-template-columns: 1fr;
-            }
-
-            .panel,
-            .aside {
-                padding: 28px;
+        @media (max-width: 640px) {
+            .card {
                 border-radius: 28px;
-            }
-
-            .subtitle {
-                font-size: 18px;
+                padding: 44px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="leaf leaf-1" aria-hidden="true"></div>
-    <div class="leaf leaf-2" aria-hidden="true"></div>
-    <div class="leaf leaf-3" aria-hidden="true"></div>
-    <div class="leaf leaf-4" aria-hidden="true"></div>
-
     <main class="shell">
-        <div class="layout">
-            <section class="panel">
-                <div class="eyebrow" id="eyebrow">404 error</div>
-
-                <div class="brand">
-                    <div class="brand-mark" aria-hidden="true"></div>
-                    <div class="brand-name">Autumn Framework</div>
-                </div>
-
-                <h1 id="title">This page drifted away with the leaves</h1>
-                <p class="subtitle" id="subtitle">The address you opened does not lead anywhere anymore. The rest of Autumn is still here: calm, warm, and ready to guide you back.</p>
-
-                <div class="actions">
-                    <a class="button button-primary" id="home-link" href="/en">Go home</a>
-                    <a class="button button-secondary" id="github-link" href="https://github.com/De4oult/Autumn" target="_blank">View on GitHub</a>
-                </div>
-            </section>
-
-            <aside class="aside">
-                <div class="status-card">
-                    <div class="status-chip">
-                        <div class="status-label" id="status-label">Status</div>
-                        <div class="status-code">404</div>
-                    </div>
-                    <div class="status-icon" aria-hidden="true"></div>
-                </div>
-
-                <h2 id="status-title">What happened?</h2>
-                <p id="status-body">Usually this means the link is outdated, the address was typed incorrectly, or the page has not been published yet.</p>
-
-                <div class="note">
-                    <p id="status-hint">Try the homepage, the docs, or the roadmap to find your way again.</p>
-                </div>
-
-                <div class="footnote">@de4oult • Autumn Framework</div>
-            </aside>
-        </div>
+        <section class="card">
+            <div class="brand">Autumn Framework</div>
+            <h1 class="code">404</h1>
+            <p class="title" id="title">not found</p>
+            <a class="button" id="home-link" href="/en">back home</a>
+            <p class="hint" id="hint">The page you requested does not exist anymore.</p>
+        </section>
     </main>
 
     <script>
         (function () {
             var isRu = window.location.pathname === '/ru' || window.location.pathname.indexOf('/ru/') === 0;
-            var lang = isRu ? 'ru' : 'en';
-            var copy = {
-                en: {
-                    title: 'Page not found · Autumn Framework',
-                    description: 'The requested page could not be found on the Autumn Framework website.',
-                    eyebrow: '404 error',
-                    heading: 'This page drifted away with the leaves',
-                    subtitle: 'The address you opened does not lead anywhere anymore. The rest of Autumn is still here: calm, warm, and ready to guide you back.',
-                    home: 'Go home',
-                    github: 'View on GitHub',
-                    statusLabel: 'Status',
-                    statusTitle: 'What happened?',
-                    statusBody: 'Usually this means the link is outdated, the address was typed incorrectly, or the page has not been published yet.',
-                    statusHint: 'Try the homepage, the docs, or the roadmap to find your way again.',
-                    homeHref: '/en'
-                },
-                ru: {
-                    title: 'Страница не найдена · Autumn Framework',
-                    description: 'Запрошенная страница не найдена на сайте Autumn Framework.',
-                    eyebrow: 'Ошибка 404',
-                    heading: 'Эта страница затерялась среди листьев',
-                    subtitle: 'Адрес, который вы открыли, больше никуда не ведёт. Но весь остальной Autumn на месте: спокойный, тёплый и готовый вернуть вас на верную тропу.',
-                    home: 'На главную',
-                    github: 'Посмотреть на GitHub',
-                    statusLabel: 'Статус',
-                    statusTitle: 'Что произошло?',
-                    statusBody: 'Обычно это значит, что ссылка устарела, адрес был введён с ошибкой или страница ещё не опубликована.',
-                    statusHint: 'Попробуйте главную страницу, документацию или дорожную карту, чтобы снова сориентироваться.',
-                    homeHref: '/ru'
+            var copy = isRu
+                ? {
+                    lang: 'ru',
+                    title: 'не найдено',
+                    button: 'вернуться на главную',
+                    hint: 'Страница, которую вы открыли, больше не существует.',
+                    href: '/ru',
+                    pageTitle: '404 · Autumn Framework',
+                    description: 'Запрошенная страница не найдена на сайте Autumn Framework.'
                 }
-            }[lang];
+                : {
+                    lang: 'en',
+                    title: 'not found',
+                    button: 'back home',
+                    hint: 'The page you requested does not exist anymore.',
+                    href: '/en',
+                    pageTitle: '404 · Autumn Framework',
+                    description: 'The requested page could not be found on the Autumn Framework website.'
+                };
 
-            document.documentElement.lang = lang;
-            document.title = copy.title;
+            document.documentElement.lang = copy.lang;
+            document.title = copy.pageTitle;
             document.querySelector('meta[name="description"]').setAttribute('content', copy.description);
-            document.getElementById('eyebrow').textContent = copy.eyebrow;
-            document.getElementById('title').textContent = copy.heading;
-            document.getElementById('subtitle').textContent = copy.subtitle;
-            document.getElementById('home-link').textContent = copy.home;
-            document.getElementById('home-link').setAttribute('href', copy.homeHref);
-            document.getElementById('github-link').textContent = copy.github;
-            document.getElementById('status-label').textContent = copy.statusLabel;
-            document.getElementById('status-title').textContent = copy.statusTitle;
-            document.getElementById('status-body').textContent = copy.statusBody;
-            document.getElementById('status-hint').textContent = copy.statusHint;
+            document.getElementById('title').textContent = copy.title;
+            document.getElementById('home-link').textContent = copy.button;
+            document.getElementById('home-link').setAttribute('href', copy.href);
+            document.getElementById('hint').textContent = copy.hint;
         }());
     </script>
 </body>
