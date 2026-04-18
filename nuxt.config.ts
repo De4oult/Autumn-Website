@@ -69,6 +69,9 @@ export default defineNuxtConfig({
                 { name : 'viewport', content : 'width=device-width, initial-scale=1' }
             ],
             link : [
+                { rel : 'icon', type : 'image/png', sizes : '48x48', href : '/favicon-48.png' },
+                { rel : 'icon', type : 'image/png', sizes : '96x96', href : '/favicon-96.png' },
+                { rel : 'icon', href : '/favicon.ico' },
                 { rel : 'icon', type : 'image/svg+xml', href : '/autumn.svg' }
             ]
         }
