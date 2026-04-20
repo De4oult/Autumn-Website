@@ -69,19 +69,19 @@ export const documentation = [
         icon        : BookOpen,
         title       : 'data.documentation.concepts.title',
         description : 'data.documentation.concepts.description',
-        to          : '/documentation/concepts'
+        to          : '/documentation/get-started/first-service'
     },
     {
         icon        : Code,
         title       : 'data.documentation.examples.title',
         description : 'data.documentation.examples.description',
-        to          : '/documentation/examples'
+        to          : '/documentation/get-started/first-controller'
     },
     {
         icon        : FileText,
         title       : 'data.documentation.documentation.title',
         description : 'data.documentation.documentation.description',
-        to          : '/documentation/reference'
+        to          : '/documentation/get-started/final-assembly'
     }
 ];
 
