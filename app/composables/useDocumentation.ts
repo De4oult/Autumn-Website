@@ -63,8 +63,10 @@ export const useDocumentation = async () => {
         return [];
     });
 
+    const documentationRouterKey = computed(() => `documentation-router-${locale.value}`);
+
     const { data: docsRouter } = await useAsyncData<DocumentationRouterContent | null>(
-        'documentation-router',
+        documentationRouterKey,
         () => queryCollection('content')
             .path(`/${locale.value}/documentation`)
             .first() as Promise<DocumentationRouterContent | null>,
