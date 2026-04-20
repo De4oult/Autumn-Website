@@ -6,7 +6,7 @@ Project status:
 - Public website: https://autumn.de4oult.online/en
 - Localized Russian version: https://autumn.de4oult.online/ru
 - Repository: https://github.com/De4oult/Autumn
-- Latest public release listed on the site: v0.1.0
+- Latest public release listed on the site: v0.1.1
 
 Key ideas:
 - Explicit dependency injection instead of hidden global service state.

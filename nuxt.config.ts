@@ -77,11 +77,6 @@ export default defineNuxtConfig({
         }
     },
 
-    site : {
-        url  : 'https://autumn.de4oult.online',
-        name : 'Autumn Framework'
-    },
-
     fonts : {
         families : [
             {

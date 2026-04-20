@@ -12,7 +12,7 @@ items:
       - Custom ORM engine designed for performance and flexibility
 
   - status: in-progress
-    version: v0.2 (Current)
+    version: v0.2 (In progress)
     title: Developer Experience
     items:
       - Built-in templating system with support for dynamic web pages

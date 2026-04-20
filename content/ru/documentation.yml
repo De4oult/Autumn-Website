@@ -1,0 +1,41 @@
+title: Документация Autumn
+eyebrow: Руководства, примеры и справочник API
+navigation:
+  - slug: get-started
+    title: Начало работы
+    chapters:
+      - slug: installation
+        title: Установка
+        parts:
+          - slug: local-setup
+            title: Локальная настройка
+            document: get-started/installation/local-setup
+
+          - slug: first-app
+            title: Первое приложение
+            document: get-started/installation/first-app
+
+      - slug: first-controller
+        title: Первый контроллер
+        parts:
+          - slug: hello-controller
+            title: Hello-контроллер
+            document: get-started/first-controller/hello-controller
+
+      - slug: first-service
+        title: Первый сервис
+        parts:
+          - slug: minimal-service
+            title: Минимальный сервис
+            document: get-started/first-service/minimal-service
+
+          - slug: service-injection
+            title: Внедрение сервиса
+            document: get-started/first-service/service-injection
+
+      - slug: final-assembly
+        title: Итоговая сборка
+        parts:
+          - slug: wiring-everything
+            title: Связываем всё вместе
+            document: get-started/final-assembly/wiring-everything

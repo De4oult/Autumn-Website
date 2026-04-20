@@ -56,7 +56,14 @@
         },
         "documentation" : {
             "title" : "Documentation",
-            "subtitle" : "We are carefully preparing the docs so they feel clear, calm, and genuinely useful. For now, Autumn is still growing like a warm project on an autumn evening."
+            "subtitle" : "Guides, concepts, examples, and API notes for building with Autumn.",
+            "eyebrow" : "Framework knowledge base",
+            "notice" : "This documentation page is actively being expanded and refined.",
+            "navigation" : "Browse docs",
+            "search" : "Search docs...",
+            "search_empty" : "No articles matched your search.",
+            "previous" : "Previous article",
+            "next" : "Next article"
         },
         "error" : {
             "eyebrow" : "404 error",

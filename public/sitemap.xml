@@ -40,6 +40,78 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/" />
     </url>
     <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/installation/local-setup/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/installation/local-setup/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/installation/local-setup/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/installation/local-setup/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/installation/local-setup/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/installation/local-setup/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/installation/local-setup/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/installation/local-setup/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/installation/first-app/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/installation/first-app/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/installation/first-app/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/installation/first-app/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/installation/first-app/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/installation/first-app/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/installation/first-app/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/installation/first-app/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/first-controller/hello-controller/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-controller/hello-controller/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-controller/hello-controller/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-controller/hello-controller/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/first-controller/hello-controller/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-controller/hello-controller/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-controller/hello-controller/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-controller/hello-controller/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/first-service/minimal-service/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/minimal-service/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-service/minimal-service/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/minimal-service/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/first-service/minimal-service/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/minimal-service/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-service/minimal-service/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/minimal-service/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/first-service/service-injection/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/service-injection/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-service/service-injection/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/service-injection/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/first-service/service-injection/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/service-injection/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/first-service/service-injection/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/first-service/service-injection/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/en/documentation/get-started/final-assembly/wiring-everything/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/final-assembly/wiring-everything/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/final-assembly/wiring-everything/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/final-assembly/wiring-everything/" />
+    </url>
+    <url>
+        <loc>https://autumn.de4oult.online/ru/documentation/get-started/final-assembly/wiring-everything/</loc>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/documentation/get-started/final-assembly/wiring-everything/" />
+        <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/documentation/get-started/final-assembly/wiring-everything/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://autumn.de4oult.online/en/documentation/get-started/final-assembly/wiring-everything/" />
+    </url>
+    <url>
         <loc>https://autumn.de4oult.online/en/releases/</loc>
         <xhtml:link rel="alternate" hreflang="en-US" href="https://autumn.de4oult.online/en/releases/" />
         <xhtml:link rel="alternate" hreflang="ru-RU" href="https://autumn.de4oult.online/ru/releases/" />

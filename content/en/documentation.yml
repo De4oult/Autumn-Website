@@ -1,0 +1,44 @@
+title: Autumn Documentation
+description: Guides, examples, and API reference notes for building with Autumn.
+eyebrow: Guides, examples, and API reference
+meta:
+  eyebrow: Guides, examples, and API reference
+navigation:
+  - slug: get-started
+    title: Get Started
+    chapters:
+      - slug: installation
+        title: Installation
+        parts:
+          - slug: local-setup
+            title: Local Setup
+            document: get-started/installation/local-setup
+
+          - slug: first-app
+            title: First App
+            document: get-started/installation/first-app
+
+      - slug: first-controller
+        title: First Controller
+        parts:
+          - slug: hello-controller
+            title: Hello Controller
+            document: get-started/first-controller/hello-controller
+
+      - slug: first-service
+        title: First Service
+        parts:
+          - slug: minimal-service
+            title: Minimal Service
+            document: get-started/first-service/minimal-service
+
+          - slug: service-injection
+            title: Service Injection
+            document: get-started/first-service/service-injection
+
+      - slug: final-assembly
+        title: Final Assembly
+        parts:
+          - slug: wiring-everything
+            title: Wiring Everything Together
+            document: get-started/final-assembly/wiring-everything
