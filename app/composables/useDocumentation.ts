@@ -22,6 +22,7 @@ export type DocumentationSection = {
 type DocumentationRouterContent = {
     title?: string;
     description?: string;
+    eyebrow?: string;
     navigation?: DocumentationSection[] | boolean;
     meta?: {
         eyebrow?: string;
@@ -77,7 +78,10 @@ export const useDocumentation = async () => {
         description : docsRouter.value?.description || t('page.documentation.subtitle')
     }));
 
-    const pageEyebrow = computed(() => docsRouter.value?.meta?.eyebrow || t('page.documentation.eyebrow'));
+    const pageEyebrow = computed(() =>
+        docsRouter.value?.meta?.eyebrow
+        || docsRouter.value?.eyebrow
+        || t('page.documentation.eyebrow'));
 
     const navigation = computed<DocumentationSection[]>(() => {
         const sections = docsRouter.value?.navigation;

@@ -8,9 +8,9 @@ description: Вынесите переиспользуемую логику пр
 
 ## Небольшой сервис
 ```python
-from autumn import service
+from app import app
 
-@service
+@app.service
 class GreetingService:
     def build_message(self) -> str:
         return 'Hello from the service layer'

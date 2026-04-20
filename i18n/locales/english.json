@@ -58,6 +58,7 @@
             "title" : "Documentation",
             "subtitle" : "Guides, concepts, examples, and API notes for building with Autumn.",
             "eyebrow" : "Framework knowledge base",
+            "notice" : "This documentation page is actively being expanded and refined.",
             "navigation" : "Browse docs",
             "search" : "Search docs...",
             "search_empty" : "No articles matched your search.",

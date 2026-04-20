@@ -1,3 +1,19 @@
+const documentationRoutes = [
+    '/documentation',
+    '/documentation/get-started/installation/local-setup',
+    '/documentation/get-started/installation/first-app',
+    '/documentation/get-started/first-controller/hello-controller',
+    '/documentation/get-started/first-service/minimal-service',
+    '/documentation/get-started/first-service/service-injection',
+    '/documentation/get-started/final-assembly/wiring-everything'
+]
+
+const sitemapUrls = [
+    '/en',
+    '/ru',
+    ...documentationRoutes.flatMap(route => [`/en${route}`, `/ru${route}`])
+]
+
 export default defineNuxtConfig({
     compatibilityDate : '2024-04-03',
     devtools          : { enabled : false },
@@ -75,10 +91,7 @@ export default defineNuxtConfig({
     },
 
     sitemap : {
-        urls : [
-            '/en',
-            '/ru'
-        ],
+        urls : sitemapUrls,
         xsl : false
     },
 

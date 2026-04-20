@@ -12,10 +12,7 @@ from autumn import Autumn
 
 import uvicorn
 
-app = Autumn(
-    name = 'My First App',
-    version = '0.1.0'
-)
+app = Autumn()
 
 if __name__ == '__main__':
     uvicorn.run(app)

@@ -5,6 +5,25 @@
                 {{ activePart?.article.title }}
             </p>
 
+            <div class="mb-4 rounded-2xl border border-autumn-accent/20 bg-autumn-accent/8 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+                <div class="flex items-start gap-3">
+                    <Info
+                        :size="18"
+                        class="mt-0.5 shrink-0 text-autumn-accent"
+                    />
+
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-autumn-accent">
+                            {{ $t('common.page_in_progress') }}
+                        </p>
+
+                        <p class="mt-1 text-sm leading-6 text-autumn-text-secondary">
+                            {{ $t('page.documentation.notice') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
                 {{ activeTitle }}
             </h1>
@@ -109,7 +128,7 @@
 </template>
 
 <script setup lang="ts">
-    import { ArrowLeft, ArrowRight }     from 'lucide-vue-next'
+    import { ArrowLeft, ArrowRight, Info } from 'lucide-vue-next'
     import type { DocumentationArticle } from '~/composables/useDocumentation'
 
     type DocumentationCodeTab = {
