@@ -24,6 +24,3 @@ logs
 !.env.example
 
 pnpm-lock.yaml
-
-# Custom
-scripts/*

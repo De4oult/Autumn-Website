@@ -32,7 +32,7 @@ navigation:
           - slug: service-injection
             title: Внедрение сервиса
             document: get-started/first-service/service-injection
-
+      
       - slug: final-assembly
         title: Итоговая сборка
         parts:
@@ -49,11 +49,11 @@ navigation:
   #         - slug: base-routing
   #           title: Базовые маршруты
   #           document: documentation/controllers/base-routing
-            
+
   #         - slug: path-parameters
   #           title: Path-параметры
   #           document: documentation/controllers/path-parameters
-            
+
   #         - slug: query-parameters
   #           title: Query-параметры
   #           document: documentation/controllers/query-parameters
@@ -154,7 +154,7 @@ navigation:
   #         - slug: dependencies
   #           title: Зависимости
   #           document: documentation/documentation/dependencies
-            
+
   #         - slug: how-to-document
   #           title: Документирование приложения
   #           document: documentation/documentation/how-to-document

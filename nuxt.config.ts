@@ -13,6 +13,10 @@ export default defineNuxtConfig({
         'motion-v/nuxt'
     ],
 
+    experimental : {
+        payloadExtraction : false
+    },
+
     runtimeConfig : {
         public : {
             url         : 'https://autumn.de4oult.online',

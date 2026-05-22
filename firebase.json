@@ -14,16 +14,6 @@
                 "type": 301
             },
             {
-                "source": "/en",
-                "destination": "/en/",
-                "type": 301
-            },
-            {
-                "source": "/ru",
-                "destination": "/ru/",
-                "type": 301
-            },
-            {
                 "source": "/sitemap_index.xml",
                 "destination": "/sitemap.xml",
                 "type": 301
