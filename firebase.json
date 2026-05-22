@@ -6,10 +6,21 @@
             "**/.*",
             "**/node_modules/**"
         ],
+        "trailingSlash": true,
         "redirects": [
             {
                 "source": "/",
                 "destination": "/en/",
+                "type": 301
+            },
+            {
+                "source": "/en",
+                "destination": "/en/",
+                "type": 301
+            },
+            {
+                "source": "/ru",
+                "destination": "/ru/",
                 "type": 301
             },
             {

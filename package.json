@@ -3,6 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "audit:seo": "node scripts/audit-seo.mjs",
         "build": "nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",

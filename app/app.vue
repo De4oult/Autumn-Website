@@ -20,6 +20,23 @@
     const description = computed(() => t('seo.site.description'))
     const socialImageAlt = computed(() => t('seo.site.image_alt'))
 
+    const normalizeSeoUrl = (value: unknown): unknown => {
+        if(typeof value !== 'string')
+            return value
+
+        return value.replace(/([^:])\/{2,}/g, '$1/')
+    }
+
+    const normalizedLocaleLinks = computed(() => (localeHead.value.link || []).map(link => ({
+        ...link,
+        href : normalizeSeoUrl(link.href) as string | undefined
+    })))
+
+    const normalizedLocaleMeta = computed(() => (localeHead.value.meta || []).map(meta => ({
+        ...meta,
+        content : normalizeSeoUrl(meta.content) as string | undefined
+    })))
+
     const currentLocaleConfig = computed(() => locales.value.find(option => {
         const code = typeof option === 'string' ? option : option.code
 
@@ -42,9 +59,9 @@
     useHead(() => ({
         titleTemplate : title => title ? `${title} · ${siteName}` : siteName,
         htmlAttrs     : localeHead.value.htmlAttrs,
-        link          : [...(localeHead.value.link || [])],
+        link          : normalizedLocaleLinks.value,
         meta          : [
-            ...(localeHead.value.meta || []),
+            ...normalizedLocaleMeta.value,
             { name : 'application-name', content : siteName },
             { name : 'apple-mobile-web-app-title', content : siteName },
             { name : 'author', content : config.public.author },

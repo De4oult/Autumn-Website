@@ -63,25 +63,25 @@ export const documentation = [
         icon        : Terminal,
         title       : 'data.documentation.get_started.title',
         description : 'data.documentation.get_started.description',
-        to          : '/documentation/get-started'
+        to          : '/documentation/get-started/installation/local-setup'
     },
     {
         icon        : BookOpen,
         title       : 'data.documentation.concepts.title',
         description : 'data.documentation.concepts.description',
-        to          : '/documentation/get-started/first-service'
+        to          : '/documentation/get-started/first-service/minimal-service'
     },
     {
         icon        : Code,
         title       : 'data.documentation.examples.title',
         description : 'data.documentation.examples.description',
-        to          : '/documentation/get-started/first-controller'
+        to          : '/documentation/get-started/first-controller/hello-controller'
     },
     {
         icon        : FileText,
         title       : 'data.documentation.documentation.title',
         description : 'data.documentation.documentation.description',
-        to          : '/documentation/get-started/final-assembly'
+        to          : '/documentation/get-started/final-assembly/wiring-everything'
     }
 ];
 

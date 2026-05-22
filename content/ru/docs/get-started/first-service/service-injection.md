@@ -13,32 +13,32 @@ Autumn использует явное объявление зависимост
 @tab controller/hello.py [python]
 
 ```python
-from autumn.controller import get
+from autumn.controller import REST, get
 from autumn.response import JSONResponse
 
-from app import app
+from app.services.greeting import GreetingService
 
-@app.rest(prefix = '/hello')
+@REST(prefix = '/hello')
 class HelloController:
-    def __init__(self, service: GreetingService):
+    def __init__(self, service: GreetingService) -> None:
         self.service = service
-
-    @get('/')
-    async def index(self) -> JSONResponse:
+    
+    @get('/{name:str}')
+    async def hello_by_name(self, name: str) -> JSONResponse:
         return JSONResponse({
-            'message' : self.service.build_message()
+            'message' : self.service.build_message(name)
         })
 ```
 
 @tab services/greeting.py [python]
 
 ```python
-from app import app
+from autumn import service
 
-@app.service
+@service
 class GreetingService:
-    def build_message(self) -> str:
-        return 'Hello from the service layer'
+    def build_message(self, name: str) -> str:
+        return f'Hello from service, {name}'
 ```
 ::
 

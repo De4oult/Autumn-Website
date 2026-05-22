@@ -256,7 +256,7 @@
             code : `from autumn.controller import REST, get
 from autumn.response import JSONResponse
             
-@app.rest(prefix = '/users')
+@REST(prefix = '/users')
 class UserController:
     @get
     async def get_users(self) -> JSONResponse:
@@ -266,7 +266,7 @@ class UserController:
         ])`
         },    
         {
-            name : 'app.py',
+            name : 'main.py',
             lang : 'python',
             code : `from autumn import Autumn
 
@@ -275,7 +275,10 @@ import uvicorn
 app = Autumn()
 
 if __name__ == '__main__':
-    uvicorn.run(app)`
+    uvicorn.run(app)
+    
+    
+    `
         }
     ]
 
@@ -283,7 +286,7 @@ if __name__ == '__main__':
         {
             name : 'services/employee.py',
             lang : 'python',
-            code : `@app.service
+            code : `@service
 class EmployeesService:
     def __init__(self, database: DBClient):
         self.database = database
@@ -297,7 +300,7 @@ class EmployeesService:
         {
             name : 'controllers/employee.py',
             lang : 'python',
-            code : `@app.rest()
+            code : `@REST()
 class EmployeesController:
     def __init__(self, service: EmployeesService):
         self.service = service

@@ -62,7 +62,7 @@
 
                                 class="flex items-start text-autumn-text-secondary"
                             >
-                                <span class="mr-2 mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-autumn-border-light"></span>
+                                <span class="mr-2 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-autumn-border-light"></span>
                                 <span>{{ item }}</span>
                             </li>
                         </ul>
@@ -81,12 +81,14 @@
     } from 'lucide-vue-next'    
 
     type RoadmapStatus = 'completed' | 'in-progress' | 'planned'
+    
     type RoadmapPhase = {
         status: RoadmapStatus
         version: string
         title: string
         items: string[]
     }
+
     type RoadmapContent = {
         title: string
         description: string

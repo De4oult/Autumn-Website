@@ -42,7 +42,7 @@
                             :key="stringifyChange(change)"
                             class="flex items-start text-autumn-text-secondary"
                         >
-                            <span class="mr-3 mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-autumn-accent"></span>
+                            <span class="mr-3 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-autumn-accent"></span>
                             <span>
                                 <template
                                     v-for="(part, index) in formatChange(change)"

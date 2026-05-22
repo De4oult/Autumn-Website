@@ -8,12 +8,12 @@ description: Вынесите переиспользуемую логику пр
 
 ## Небольшой сервис
 ```python
-from app import app
+from autumn import service
 
-@app.service
+@service
 class GreetingService:
-    def build_message(self) -> str:
-        return 'Hello from the service layer'
+    def build_message(self, name: str) -> str:
+        return f'Hello from service, {name}'
 ```
 
 ## Простое правило

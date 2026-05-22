@@ -115,9 +115,9 @@ export const useDocumentation = async () => {
             return null;
 
         if(routeSegments.value.length === 0)
-            return flatParts.value[0];
+            return null;
 
-        if(routeSegments.value.length > 3)
+        if(routeSegments.value.length !== 3)
             return null;
 
         const [articleSlug, chapterSlug, partSlug] = routeSegments.value;
@@ -126,16 +126,10 @@ export const useDocumentation = async () => {
         if(!articleParts.length)
             return null;
 
-        if(!chapterSlug)
-            return articleParts[0];
-
         const chapterParts = articleParts.filter(part => part.chapter.slug === chapterSlug);
 
         if(!chapterParts.length)
             return null;
-
-        if(!partSlug)
-            return chapterParts[0];
 
         return chapterParts.find(part => part.slug === partSlug) || null;
     });

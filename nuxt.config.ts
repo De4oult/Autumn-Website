@@ -32,9 +32,7 @@ export default defineNuxtConfig({
     i18n : {
         baseUrl               : 'https://autumn.de4oult.online',
         defaultLocale         : 'en',
-        detectBrowserLanguage : {
-            fallbackLocale : 'en'
-        },
+        detectBrowserLanguage : false,
         locales : [
             { code : 'en', language : 'en-US', file : 'english.json' },
             { code : 'ru', language : 'ru-RU', file : 'russian.json' }
@@ -42,11 +40,41 @@ export default defineNuxtConfig({
         langDir      : 'locales',
         rootRedirect : {
             statusCode : 301,
-            path       : '/'
+            path       : '/en/'
         },
         strategy      : 'prefix',
         trailingSlash : true,
         vueI18n       : './i18n.config.ts'
+    },
+
+    nitro : {
+        prerender : {
+            crawlLinks : true,
+            routes     : [
+                '/en/',
+                '/ru/',
+                '/en/benchmarks/',
+                '/ru/benchmarks/',
+                '/en/documentation/',
+                '/ru/documentation/',
+                '/en/documentation/get-started/installation/local-setup/',
+                '/ru/documentation/get-started/installation/local-setup/',
+                '/en/documentation/get-started/installation/first-app/',
+                '/ru/documentation/get-started/installation/first-app/',
+                '/en/documentation/get-started/first-controller/hello-controller/',
+                '/ru/documentation/get-started/first-controller/hello-controller/',
+                '/en/documentation/get-started/first-service/minimal-service/',
+                '/ru/documentation/get-started/first-service/minimal-service/',
+                '/en/documentation/get-started/first-service/service-injection/',
+                '/ru/documentation/get-started/first-service/service-injection/',
+                '/en/documentation/get-started/final-assembly/wiring-everything/',
+                '/ru/documentation/get-started/final-assembly/wiring-everything/',
+                '/en/releases/',
+                '/ru/releases/',
+                '/en/roadmap/',
+                '/ru/roadmap/'
+            ]
+        }
     },
 
     css : [

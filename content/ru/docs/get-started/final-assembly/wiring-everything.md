@@ -12,7 +12,7 @@ app/
     hello.py
   services/
     greeting.py
-app.py
+main.py
 ```
 
 ## Итог
