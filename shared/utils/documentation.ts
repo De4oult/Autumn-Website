@@ -23,21 +23,21 @@ export type DocumentationArticlePath = {
 }
 
 export const collectDocumentationArticlePaths = (navigation: SeoDocumentationSection[]): DocumentationArticlePath[] => {
-    const paths: DocumentationArticlePath[] = []
+    const paths: DocumentationArticlePath[] = [];
 
     for(const section of navigation) {
         for(const chapter of section.chapters || []) {
             for(const part of chapter.parts || []) {
                 if(!section.slug || !chapter.slug || !part.slug)
-                    continue
+                    continue;
 
                 paths.push({
                     path     : `/documentation/${section.slug}/${chapter.slug}/${part.slug}/`,
                     document : part.document
-                })
+                });
             }
         }
     }
 
-    return paths
-}
+    return paths;
+};
