@@ -63,7 +63,12 @@
             "search" : "Search docs...",
             "search_empty" : "No articles matched your search.",
             "previous" : "Previous article",
-            "next" : "Next article"
+            "next" : "Next article",
+            "index_overview" : "Use this page as the entry point for Autumn's guides. Start with local setup, then build the first app, add a controller, wire a service, and finish with the full assembly flow.",
+            "index_start" : "Start with Local Setup",
+            "index_sections" : "Available sections",
+            "index_article_one" : "{count} article",
+            "index_article_many" : "{count} articles"
         },
         "error" : {
             "eyebrow" : "404 error",
@@ -164,7 +169,7 @@
             "image_alt" : "Autumn Framework social preview card"
         },
         "home" : {
-            "title" : "Python Web Application Framework",
+            "title" : "Simple, robust, cozy",
             "description" : "Autumn is a modern Python web application framework with dependency injection, typed configuration, clean architecture, and a cozy developer experience.",
             "social_title" : "Autumn Framework",
             "social_description" : "A modern Python web application framework focused on clean architecture and dependency injection."

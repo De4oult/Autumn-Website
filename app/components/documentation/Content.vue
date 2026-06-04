@@ -2,27 +2,8 @@
     <div class="min-w-0">
         <div class="mb-5 max-w-3xl">
             <p class="mb-3 text-sm font-medium uppercase tracking-[0.22em] text-autumn-accent">
-                {{ activePart?.article.title }}
+                {{ activePart?.article.title || pageEyebrow }}
             </p>
-
-            <div class="mb-4 rounded-2xl border border-autumn-accent/20 bg-autumn-accent/8 px-4 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
-                <div class="flex items-start gap-3">
-                    <Info
-                        :size="18"
-                        class="mt-0.5 shrink-0 text-autumn-accent"
-                    />
-
-                    <div>
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-autumn-accent">
-                            {{ $t('common.page_in_progress') }}
-                        </p>
-
-                        <p class="mt-1 text-sm leading-6 text-autumn-text-secondary">
-                            {{ $t('page.documentation.notice') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
 
             <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
                 {{ activeTitle }}
@@ -34,12 +15,25 @@
         </div>
 
         <div class="mb-5 flex flex-wrap gap-2">
-            <span class="rounded-full border border-autumn-border bg-autumn-bg-card/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-accent">
+            <span
+                v-if="activePart"
+                class="rounded-full border border-autumn-border bg-autumn-bg-card/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-accent"
+            >
                 {{ activePart?.article.title }}
             </span>
 
-            <span class="rounded-full border border-autumn-border bg-autumn-bg-card/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-text-secondary">
+            <span
+                v-if="activePart"
+                class="rounded-full border border-autumn-border bg-autumn-bg-card/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-text-secondary"
+            >
                 {{ activePart?.chapter.title }}
+            </span>
+
+            <span
+                v-if="!activePart"
+                class="rounded-full border border-autumn-border bg-autumn-bg-card/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-accent"
+            >
+                {{ formatArticleCount(flatParts.length) }}
             </span>
         </div>
 
@@ -79,7 +73,68 @@
                 v-else
                 class="px-6 py-8 text-sm text-autumn-text-secondary sm:px-8"
             >
-                {{ docsIndex.description }}
+                <div
+                    v-if="!activePart"
+                    class="space-y-8"
+                >
+                    <div class="max-w-2xl">
+                        <p class="text-base leading-8">
+                            {{ $t('page.documentation.index_overview') }}
+                        </p>
+
+                        <NuxtLink
+                            v-if="firstPart"
+                            :to="firstPart.href"
+                            class="mt-6 inline-flex items-center text-autumn-accent transition-colors duration-300 hover:text-autumn-accent-dark group"
+                        >
+                            <span class="font-semibold">{{ $t('page.documentation.index_start') }}</span>
+                            <ArrowRight
+                                :size="20"
+                                class="ml-3 group-hover:animate-bounce-right"
+                            />
+                        </NuxtLink>
+                    </div>
+
+                    <div>
+                        <h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-autumn-text">
+                            {{ $t('page.documentation.index_sections') }}
+                        </h2>
+
+                        <div class="mt-4 grid gap-3 md:grid-cols-2">
+                            <NuxtLink
+                                v-for="section in indexSections"
+                                :key="section.slug"
+                                :to="section.href"
+                                class="group rounded-xl border border-autumn-border bg-autumn-bg/35 p-4 transition-colors duration-300 hover:border-autumn-accent/45"
+                            >
+                                <div class="flex items-start justify-between gap-4">
+                                    <div>
+                                        <h3 class="text-base font-semibold text-autumn-text transition-colors group-hover:text-autumn-accent">
+                                            {{ section.title }}
+                                        </h3>
+
+                                        <p class="mt-2 text-sm leading-6 text-autumn-text-secondary">
+                                            {{ section.chapterTitles }}
+                                        </p>
+                                    </div>
+
+                                    <ArrowRight
+                                        :size="18"
+                                        class="mt-1 shrink-0 text-autumn-accent opacity-80 transition-transform duration-300 group-hover:translate-x-1"
+                                    />
+                                </div>
+
+                                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-autumn-accent">
+                                    {{ formatArticleCount(section.count) }}
+                                </p>
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </div>
+
+                <template v-else>
+                    {{ docsIndex.description }}
+                </template>
             </div>
         </div>
 
@@ -88,13 +143,17 @@
                 v-if="previousPart"
 
                 :to="previousPart.href"
+                @mouseenter="startArrowBounce($event, -1)"
+                @mouseleave="finishArrowBounce($event)"
 
                 class="mt-3 inline-flex items-center justify-center text-autumn-accent transition-colors duration-300 hover:cursor-pointer hover:text-autumn-accent-dark group"
             >
-                <ArrowLeft
-                    :size="22" 
-                    class="mr-3 group-hover:animate-bounce-left" 
-                />
+                <span
+                    data-doc-article-arrow
+                    class="mr-3 inline-flex"
+                >
+                    <ArrowLeft :size="22" />
+                </span>
                 <div class="flex-col space-x-1 jusitfy-center">
                     {{ $t('page.documentation.previous') }} 
                     <p class="text-sm font-semibold text-autumn-text transition-colors group-hover:text-autumn-accent">
@@ -109,6 +168,8 @@
                 v-if="nextPart"
 
                 :to="nextPart.href"
+                @mouseenter="startArrowBounce($event, 1)"
+                @mouseleave="finishArrowBounce($event)"
 
                 class="mt-3 inline-flex items-center justify-center text-autumn-accent transition-colors duration-300 hover:cursor-pointer hover:text-autumn-accent-dark group"
             >
@@ -118,17 +179,19 @@
                         {{ nextPart.title }}
                     </p>
                 </div>
-                <ArrowRight 
-                    :size="22" 
-                    class="ml-3 group-hover:animate-bounce-right" 
-                />
+                <span
+                    data-doc-article-arrow
+                    class="ml-3 inline-flex"
+                >
+                    <ArrowRight :size="22" />
+                </span>
             </NuxtLink>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { ArrowLeft, ArrowRight, Info } from 'lucide-vue-next'
+    import { ArrowLeft, ArrowRight }     from 'lucide-vue-next'
     import type { DocumentationArticle } from '~/composables/useDocumentation'
 
     type DocumentationCodeTab = {
@@ -148,18 +211,120 @@
         | { type: 'content'; document: DocumentationArticle }
         | { type: 'tabs'; tabs: DocumentationCodeTab[] }
 
+    const arrowAnimationFrames = new WeakMap<HTMLElement, number>()
+    const arrowOffsets = new WeakMap<HTMLElement, number>()
+
     const config = useRuntimeConfig()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
 
     const {
         activeDocumentPath,
         activePart,
         docsIndex,
+        flatParts,
+        navigation,
         nextPart,
+        pageEyebrow,
         previousPart
     } = await useDocumentation()
 
     const siteName = `${config.public.name} Framework`
+
+    const getArticleArrow = (event: MouseEvent): HTMLElement | null => {
+        const target = event.currentTarget
+
+        if(!(target instanceof HTMLElement))
+            return null
+
+        return target.querySelector<HTMLElement>('[data-doc-article-arrow]')
+    }
+
+    const startArrowBounce = (event: MouseEvent, direction: -1 | 1) => {
+        const arrow = getArticleArrow(event)
+
+        if(!arrow)
+            return
+
+        const existingFrame = arrowAnimationFrames.get(arrow)
+
+        if(existingFrame)
+            cancelAnimationFrame(existingFrame)
+
+        delete arrow.dataset.transitionToken
+        arrow.style.transition = ''
+
+        const startedAt = performance.now()
+        const amplitude = direction * 6
+        const duration = 1100
+
+        const tick = (time: number) => {
+            const progress = ((time - startedAt) % duration) / duration
+            const offset = Math.sin(progress * Math.PI) * amplitude
+
+            arrowOffsets.set(arrow, offset)
+            arrow.style.transform = `translateX(${offset}px)`
+
+            arrowAnimationFrames.set(arrow, requestAnimationFrame(tick))
+        }
+
+        arrowAnimationFrames.set(arrow, requestAnimationFrame(tick))
+    }
+
+    const finishArrowBounce = (event: MouseEvent) => {
+        const arrow = getArticleArrow(event)
+
+        if(!arrow)
+            return
+
+        const frame = arrowAnimationFrames.get(arrow)
+        const offset = arrowOffsets.get(arrow) || 0
+        const transitionToken = `${Date.now()}-${Math.random()}`
+
+        if(frame)
+            cancelAnimationFrame(frame)
+
+        arrowAnimationFrames.delete(arrow)
+        arrow.dataset.transitionToken = transitionToken
+
+        arrow.style.transition = 'none'
+        arrow.style.transform = `translateX(${offset}px)`
+        void arrow.offsetWidth
+
+        arrow.style.transition = 'transform 320ms ease-out'
+        arrow.style.transform = 'translateX(0)'
+
+        arrow.addEventListener('transitionend', () => {
+            if(arrow.dataset.transitionToken !== transitionToken)
+                return
+
+            arrow.style.transition = ''
+            arrow.style.transform = ''
+            arrowOffsets.delete(arrow)
+            delete arrow.dataset.transitionToken
+        }, { once : true })
+    }
+
+    const getRussianArticlePluralKey = (count: number): string => {
+        const mod10 = count % 10
+        const mod100 = count % 100
+
+        if(mod10 === 1 && mod100 !== 11)
+            return 'page.documentation.index_article_one'
+
+        if(mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14))
+            return 'page.documentation.index_article_few'
+
+        return 'page.documentation.index_article_many'
+    }
+
+    const formatArticleCount = (count: number): string => {
+        if(locale.value === 'ru')
+            return t(getRussianArticlePluralKey(count), { count })
+
+        return t(count === 1
+            ? 'page.documentation.index_article_one'
+            : 'page.documentation.index_article_many', { count })
+    }
 
     const articleDocument = activeDocumentPath.value
         ? await queryCollection('content')
@@ -176,6 +341,22 @@
 
     const activeTitle = computed(() => articleDocument?.title || activePart.value?.title || docsIndex.value.title)
     const activeDescription = computed(() => articleDocument?.description || activePart.value?.description || docsIndex.value.description)
+    const firstPart = computed(() => flatParts.value[0] || null)
+    const indexSections = computed(() => navigation.value.map(section => {
+        const parts = section.chapters.flatMap(chapter => chapter.parts.map(part => ({
+            ...part,
+            chapter
+        })))
+        const first = flatParts.value.find(part => part.article.slug === section.slug)
+
+        return {
+            slug          : section.slug,
+            title         : section.title,
+            href          : first?.href || firstPart.value?.href || '/documentation',
+            count         : parts.length,
+            chapterTitles : section.chapters.map(chapter => chapter.title).join(' · ')
+        }
+    }))
 
     const isElementNode = (node: MinimarkNode): node is [string, Record<string, unknown>, ...MinimarkNode[]] =>
         Array.isArray(node) && typeof node[0] === 'string'
@@ -402,13 +583,13 @@
     }
 
     .documentation-body :deep(table) {
-        display: block;
         width: 100%;
-        overflow-x: auto;
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         border: 1px solid var(--color-autumn-border);
         border-radius: 1rem;
         background: rgba(42, 35, 32, 0.5);
+        overflow: hidden;
     }
 
     .documentation-body :deep(th),
@@ -416,7 +597,11 @@
         border-bottom: 1px solid var(--color-autumn-border);
         padding: 0.85rem 1rem;
         text-align: left;
-        white-space: nowrap;
+        vertical-align: top;
+    }
+
+    .documentation-body :deep(tr:last-child td) {
+        border-bottom: 0;
     }
 
     .documentation-body :deep(th) {

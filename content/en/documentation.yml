@@ -1,8 +1,5 @@
 title: Autumn Documentation
-description: Guides, examples, and API reference notes for building with Autumn.
 eyebrow: Guides, examples, and API reference
-meta:
-  eyebrow: Guides, examples, and API reference
 navigation:
   - slug: get-started
     title: Get Started
@@ -40,5 +37,124 @@ navigation:
         title: Final Assembly
         parts:
           - slug: wiring-everything
-            title: Wiring Everything Together
+            title: Wiring Everything
             document: get-started/final-assembly/wiring-everything
+
+  - slug: documentation
+    title: Documentation
+    chapters:
+      - slug: controllers
+        title: Controllers
+        parts:
+          - slug: base-routing
+            title: Basic Routing
+            document: documentation/controllers/base-routing
+
+          - slug: path-parameters
+            title: Path Parameters
+            document: documentation/controllers/path-parameters
+
+          - slug: query-parameters
+            title: Query Parameters
+            document: documentation/controllers/query-parameters
+
+      - slug: requests
+        title: Requests
+        parts:
+          - slug: request-body
+            title: Request Body
+            document: documentation/requests/request-body
+
+          - slug: headers
+            title: Headers
+            document: documentation/requests/headers
+
+          - slug: validation
+            title: Validation
+            document: documentation/requests/validation
+
+      - slug: responses
+        title: Responses
+        parts:
+          - slug: response-types
+            title: Response Types
+            document: documentation/responses/response-types
+
+          - slug: exceptions
+            title: Exceptions
+            document: documentation/responses/exceptions
+
+          - slug: class-based
+            title: Custom Response Classes
+            document: documentation/responses/class-based
+
+          - slug: serializable
+            title: "@serializable"
+            document: documentation/responses/serializable
+
+      - slug: dependencies
+        title: Dependencies
+        parts:
+          - slug: leaves
+            title: Leaves
+            document: documentation/dependencies/leaves
+
+          - slug: services
+            title: Services
+            document: documentation/dependencies/services
+
+          - slug: dependency-graph
+            title: Dependency Graph
+            document: documentation/dependencies/dependency-graph
+
+      - slug: lifecycle
+        title: Lifecycle
+        parts:
+          - slug: hooks
+            title: Hooks
+            document: documentation/lifecycle/hooks
+
+          - slug: middlewares
+            title: Middleware
+            document: documentation/lifecycle/middlewares
+
+          - slug: route-middlewares
+            title: Route Middleware
+            document: documentation/lifecycle/route-middlewares
+
+          - slug: controller-middlewares
+            title: Controller Middleware
+            document: documentation/lifecycle/controller-middlewares
+
+      - slug: configuration
+        title: Configuration
+        parts:
+          - slug: custom
+            title: Application Settings
+            document: documentation/configuration/custom
+
+          - slug: built-in
+            title: Built-in Configuration
+            document: documentation/configuration/built-in
+
+      - slug: websocket
+        title: WebSocket
+        parts:
+          - slug: base
+            title: Working with WS
+            document: documentation/websocket/base
+
+      - slug: documentation
+        title: Documentation
+        parts:
+          - slug: openapi
+            title: OpenAPI
+            document: documentation/documentation/openapi
+
+          - slug: dependencies
+            title: Dependencies
+            document: documentation/documentation/dependencies
+
+          - slug: how-to-document
+            title: How to Document
+            document: documentation/documentation/how-to-document

@@ -1,6 +1,6 @@
 ---
 title: Локальная настройка
-description: Python, виртуальное окружение и первая установка пакета.
+description: Подготовьте чистое Python-окружение, чтобы Autumn стартовал без лишнего тумана.
 ---
 
 Autumn лучше всего чувствует себя в чистом Python-окружении. Идея простая: один проект, одно окружение, никакого скрытого состояния машины.
@@ -18,6 +18,15 @@ Autumn лучше всего чувствует себя в чистом Python-
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+
+pip install autumn-framework uvicorn
+```
+
+@tab venv Windows [powershell]
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 
 pip install autumn-framework uvicorn
 ```

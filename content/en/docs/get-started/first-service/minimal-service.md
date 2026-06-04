@@ -1,6 +1,6 @@
 ---
 title: Minimal Service
-description: Move reusable application logic into a dedicated service class.
+description: Move logic out of the controller so the code does not thicken like autumn fog.
 ---
 
 When a controller starts doing more than receiving a request and returning a response, the code quickly becomes harder to scale and maintain.
@@ -8,12 +8,12 @@ That is why business logic is better moved into services. This keeps the HTTP la
 
 ## A Small Service
 ```python
-from app import app
+from autumn import service
 
-@app.service
+@service
 class GreetingService:
-    def build_message(self) -> str:
-        return 'Hello from the service layer'
+    def build_message(self, name: str) -> str:
+        return f'Hello from service, {name}'
 ```
 
 ## A Simple Rule

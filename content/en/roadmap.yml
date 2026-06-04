@@ -19,6 +19,7 @@ items:
       - Core framework optimizations for better performance and stability
       - Integrated authentication system out of the box
       - Improved hot-reloading for faster development feedback
+      - Convenient testing tools
 
   - status: completed
     version: v0.1

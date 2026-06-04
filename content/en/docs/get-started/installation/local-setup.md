@@ -1,6 +1,6 @@
 ---
 title: Local Setup
-description: Python, a virtual environment, and the first package installation.
+description: Prepare a clean Python environment so Autumn can start without extra fog.
 ---
 
 Autumn feels best in a clean Python environment. The idea is simple: one project, one environment, and no hidden machine state.
@@ -22,6 +22,15 @@ source .venv/bin/activate
 pip install autumn-framework uvicorn
 ```
 
+@tab venv Windows [powershell]
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+pip install autumn-framework uvicorn
+```
+
 @tab pipenv [bash]
 
 ```bash
@@ -39,7 +48,7 @@ pipenv shell
 app/
     controllers/
     services/
-app.py
+main.py
 ```
 
 The structure is intentionally small. Start with folders organized by responsibility, then let the project grow around that shape.

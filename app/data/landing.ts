@@ -81,7 +81,7 @@ export const documentation = [
         icon        : FileText,
         title       : 'data.documentation.documentation.title',
         description : 'data.documentation.documentation.description',
-        to          : '/documentation/get-started/final-assembly/wiring-everything'
+        to          : '/documentation/documentation/controllers/base-routing'
     }
 ];
 

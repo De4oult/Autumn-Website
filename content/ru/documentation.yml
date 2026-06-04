@@ -40,121 +40,121 @@ navigation:
             title: Связываем всё вместе
             document: get-started/final-assembly/wiring-everything
 
-  # - slug: documentation
-  #   title: Документация
-  #   chapters:
-  #     - slug: controllers
-  #       title: Контроллеры
-  #       parts:
-  #         - slug: base-routing
-  #           title: Базовые маршруты
-  #           document: documentation/controllers/base-routing
+  - slug: documentation
+    title: Документация
+    chapters:
+      - slug: controllers
+        title: Контроллеры
+        parts:
+          - slug: base-routing
+            title: Базовые маршруты
+            document: documentation/controllers/base-routing
 
-  #         - slug: path-parameters
-  #           title: Path-параметры
-  #           document: documentation/controllers/path-parameters
+          - slug: path-parameters
+            title: Path-параметры
+            document: documentation/controllers/path-parameters
 
-  #         - slug: query-parameters
-  #           title: Query-параметры
-  #           document: documentation/controllers/query-parameters
+          - slug: query-parameters
+            title: Query-параметры
+            document: documentation/controllers/query-parameters
 
-  #     - slug: requests
-  #       title: Запросы
-  #       parts:
-  #         - slug: parameters
-  #           title: Параметры
-  #           document: documentation/requests/parameters
+      - slug: requests
+        title: Запросы
+        parts:
+          - slug: request-body
+            title: Тело запроса
+            document: documentation/requests/request-body
 
-  #         - slug: headers
-  #           title: Header'ы
-  #           document: documentation/requests/headers
+          - slug: headers
+            title: Заголовки
+            document: documentation/requests/headers
 
-  #         - slug: validation
-  #           title: Валидация
-  #           document: documentation/requests/validation
+          - slug: validation
+            title: Валидация
+            document: documentation/requests/validation
 
-  #     - slug: responses
-  #       title: Ответы
-  #       parts:
-  #         - slug: response-types
-  #           title: Типы ответов
-  #           document: documentation/responses/response-types
+      - slug: responses
+        title: Ответы
+        parts:
+          - slug: response-types
+            title: Типы ответов
+            document: documentation/responses/response-types
 
-  #         - slug: exceptions
-  #           title: Исключения
-  #           document: documentation/responses/exceptions
+          - slug: exceptions
+            title: Исключения
+            document: documentation/responses/exceptions
 
-  #         - slug: class-based
-  #           title: Классовые ответы
-  #           document: documentation/responses/class-based
+          - slug: class-based
+            title: Свои классы ответов
+            document: documentation/responses/class-based
 
-  #         - slug: serializable
-  #           title: "@serializable"
-  #           document: documentation/responses/serializable
+          - slug: serializable
+            title: "@serializable"
+            document: documentation/responses/serializable
 
-  #     - slug: dependencies
-  #       title: Зависимости
-  #       parts:
-  #         - slug: leaves
-  #           title: Leaf'ы
-  #           document: documentation/dependencies/leaves
+      - slug: dependencies
+        title: Зависимости
+        parts:
+          - slug: leaves
+            title: Листья
+            document: documentation/dependencies/leaves
 
-  #         - slug: services
-  #           title: Сервисы
-  #           document: documentation/dependencies/services
+          - slug: services
+            title: Сервисы
+            document: documentation/dependencies/services
 
-  #         - slug: dependency-graph
-  #           title: Граф зависимостей
-  #           document: documentation/dependencies/dependency-graph
+          - slug: dependency-graph
+            title: Граф зависимостей
+            document: documentation/dependencies/dependency-graph
 
-  #     - slug: lifecycle
-  #       title: Жизненный цикл
-  #       parts:
-  #         - slug: hooks
-  #           title: Hook
-  #           document: documentation/lifecycle/hooks
+      - slug: lifecycle
+        title: Жизненный цикл
+        parts:
+          - slug: hooks
+            title: Hook
+            document: documentation/lifecycle/hooks
 
-  #         - slug: middlewares
-  #           title: Middleware
-  #           document: documentation/lifecycle/middlewares
+          - slug: middlewares
+            title: Middleware
+            document: documentation/lifecycle/middlewares
 
-  #         - slug: route-middleware
-  #           title: Middleware маршрута
-  #           document: documentation/lifecycle/route-middleware
+          - slug: route-middlewares
+            title: Middleware маршрута
+            document: documentation/lifecycle/route-middlewares
 
-  #         - slug: controller-middleware
-  #           title: Middleware контроллера
-  #           document: documentation/lifecycle/controller-middleware
+          - slug: controller-middlewares
+            title: Middleware контроллера
+            document: documentation/lifecycle/controller-middlewares
 
-  #     - slug: configuration
-  #       title: Конфигурация
-  #       parts:
-  #         - slug: custom
-  #           title: Настройки приложения
-  #           document: documentation/configuration/custom
+      - slug: configuration
+        title: Конфигурация
+        parts:
+          - slug: custom
+            title: Настройки приложения
+            document: documentation/configuration/custom
 
-  #         - slug: built-in
-  #           title: Встроенная конфигурация
-  #           document: documentation/configuration/built-in
+          - slug: built-in
+            title: Встроенная конфигурация
+            document: documentation/configuration/built-in
 
-  #     - slug: websocket
-  #       title: Websocket
-  #       parts:
-  #         - slug: base
-  #           title: Работа с WS
-  #           document: documentation/websocket/base
+      - slug: websocket
+        title: WebSocket
+        parts:
+          - slug: base
+            title: Работа с WS
+            document: documentation/websocket/base
 
-  #     - slug: documentation
-  #       title: Документация
-  #       parts:
-  #         - slug: openapi
-  #           title: OpenAPI
-  #           document: documentation/documentation/openapi
+      - slug: documentation
+        title: Документация
+        parts:
+          - slug: openapi
+            title: OpenAPI
+            document: documentation/documentation/openapi
 
-  #         - slug: dependencies
-  #           title: Зависимости
-  #           document: documentation/documentation/dependencies
+          - slug: dependencies
+            title: Зависимости
+            document: documentation/documentation/dependencies
 
-  #         - slug: how-to-document
-  #           title: Документирование приложения
-  #           document: documentation/documentation/how-to-document
+          - slug: how-to-document
+            title: Как документировать?
+            document: documentation/documentation/how-to-document

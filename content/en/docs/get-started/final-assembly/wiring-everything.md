@@ -1,6 +1,6 @@
 ---
 title: Wiring Everything Together
-description: Combine your first controller and service into one tidy application.
+description: Bring the first files together into one application where every branch has its place.
 ---
 
 At this point, the application already has the basic Autumn rhythm: an entry point, a controller boundary, and a service layer.
@@ -12,7 +12,7 @@ app/
     hello.py
   services/
     greeting.py
-app.py
+main.py
 ```
 
 ## Final Result

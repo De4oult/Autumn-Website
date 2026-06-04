@@ -153,13 +153,19 @@ export const useDocumentation = async () => {
         : null);
 
     const previousPart = computed(() => {
-        const index = activePart.value?.index ?? 0;
+        if(!activePart.value)
+            return null;
+
+        const index = activePart.value.index;
 
         return index > 0 ? flatParts.value[index - 1] : null;
     });
 
     const nextPart = computed(() => {
-        const index = activePart.value?.index ?? 0;
+        if(!activePart.value)
+            return flatParts.value[0] || null;
+
+        const index = activePart.value.index;
 
         return index < flatParts.value.length - 1 ? flatParts.value[index + 1] : null;
     });

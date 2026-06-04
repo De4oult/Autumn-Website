@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         baseUrl               : 'https://autumn.de4oult.online',
         defaultLocale         : 'en',
         detectBrowserLanguage : false,
-        locales : [
+        locales               : [
             { code : 'en', language : 'en-US', file : 'english.json' },
             { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
@@ -93,7 +93,7 @@ export default defineNuxtConfig({
 
     app : {
         head : {
-            title     : 'Autumn Framework',
+            title     : 'Autumn Web Framework',
             htmlAttrs : {
                 lang : 'en'
             },
