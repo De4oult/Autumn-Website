@@ -368,16 +368,19 @@
         isElementNode(node) ? node[1] || {} : {}
 
     const getNodeChildren = (node: MinimarkNode): MinimarkNode[] =>
-        isElementNode(node) ? node.slice(2) : []
+        isElementNode(node) ? node.slice(2) as MinimarkNode[] : []
+
+    const isNodeList = (node: MinimarkNode | MinimarkNode[]): node is MinimarkNode[] =>
+        Array.isArray(node) && typeof node[0] !== 'string'
 
     const readMinimarkText = (node: MinimarkNode | MinimarkNode[]): string => {
-        if(Array.isArray(node) && !isElementNode(node))
+        if(isNodeList(node))
             return node.map(readMinimarkText).join('')
 
         if(typeof node === 'string')
             return node
 
-        return getNodeChildren(node).map(readMinimarkText).join('')
+        return getNodeChildren(node as MinimarkNode).map(readMinimarkText).join('')
     }
 
     const parseDocumentationCodeTabs = (node: MinimarkNode): DocumentationCodeTab[] => {
@@ -394,7 +397,7 @@
                 const match = text.match(/^@tab\s+(.+?)(?:\s+([a-z0-9_-]+))?$/i)
 
                 if(match) {
-                    pendingName = match[1]
+                    pendingName = match[1] || ''
                     pendingLang = match[2] || ''
                 }
 
@@ -473,17 +476,62 @@
         return blocks
     })
 
-    useHead(() => ({
+    const documentationSeoPath = computed(() => activePart.value
+        ? `/documentation/${activePart.value.segments.join('/')}/`
+        : '/documentation/')
+
+    const documentationBreadcrumbs = computed(() => {
+        const breadcrumbs = [
+            {
+                name : siteName,
+                path : '/'
+            },
+            {
+                name : t('seo.documentation.title'),
+                path : '/documentation/'
+            }
+        ]
+
+        if(!activePart.value)
+            return breadcrumbs
+
+        const part = activePart.value
+        const sectionFirstPart = flatParts.value.find(candidate => candidate.article.slug === part.article.slug)
+        const chapterFirstPart = flatParts.value.find(candidate =>
+            candidate.article.slug === part.article.slug
+            && candidate.chapter.slug === part.chapter.slug)
+
+        breadcrumbs.push(
+            {
+                name : part.article.title,
+                path : sectionFirstPart
+                    ? `/documentation/${sectionFirstPart.segments.join('/')}/`
+                    : documentationSeoPath.value
+            },
+            {
+                name : part.chapter.title,
+                path : chapterFirstPart
+                    ? `/documentation/${chapterFirstPart.segments.join('/')}/`
+                    : documentationSeoPath.value
+            },
+            {
+                name : activeTitle.value,
+                path : documentationSeoPath.value
+            }
+        )
+
+        return breadcrumbs
+    })
+
+    useAutumnSeo(() => ({
         title : activePart.value
             ? `${activeTitle.value} · ${t('seo.documentation.title')}`
             : t('seo.documentation.title'),
-        meta : [
-            { name : 'description', content : activeDescription.value },
-            { property : 'og:title', content : `${activeTitle.value} · ${siteName}` },
-            { property : 'og:description', content : activeDescription.value },
-            { name : 'twitter:title', content : `${activeTitle.value} · ${siteName}` },
-            { name : 'twitter:description', content : activeDescription.value }
-        ]
+        description : activeDescription.value,
+        path        : documentationSeoPath.value,
+        ogType      : activePart.value ? 'article' : 'website',
+        article     : Boolean(activePart.value),
+        breadcrumbs : documentationBreadcrumbs.value
     }))
 </script>
 

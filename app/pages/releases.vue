@@ -99,9 +99,7 @@
         }
     }
 
-    const config = useRuntimeConfig()
     const { locale, t } = useI18n()
-    const siteName = `${config.public.name} Framework`
 
     const { data } = await useAsyncData<ReleasesContent | null>(
         `releases-${locale.value}`,
@@ -110,15 +108,10 @@
             .first() as Promise<ReleasesContent | null>
     )
 
-    useHead(() => ({
-        title : t('seo.releases.title'),
-        meta  : [
-            { name : 'description', content : t('seo.releases.description') },
-            { property : 'og:title', content : `${t('seo.releases.title')} · ${siteName}` },
-            { property : 'og:description', content : t('seo.releases.description') },
-            { name : 'twitter:title', content : `${t('seo.releases.title')} · ${siteName}` },
-            { name : 'twitter:description', content : t('seo.releases.description') }
-        ]
+    useAutumnSeo(() => ({
+        title       : t('seo.releases.title'),
+        description : t('seo.releases.description'),
+        path        : '/releases/'
     }))
 
     const releasesPage = computed(() => ({

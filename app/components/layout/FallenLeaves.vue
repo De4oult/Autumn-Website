@@ -65,8 +65,8 @@
     }
 
     const leaves = ref<Leaf[]>([])
-    const colors = ['#F59E0B', '#F97316', '#EA580C', '#DC2626', '#92400E']
-    const sizes = [16, 20, 24, 28, 32]
+    const colors: [string, ...string[]] = ['#F59E0B', '#F97316', '#EA580C', '#DC2626', '#92400E']
+    const sizes: [number, ...number[]] = [16, 20, 24, 28, 32]
 
     const generate = () => {
         const count = props.intensity === 'subtle' ? 8 : props.intensity === 'normal' ? 20 : 35
@@ -76,9 +76,9 @@
             left     : `${Math.random() * 100}%`,
             delay    : `${Math.random() * 10}s`,
             duration : `${12 + Math.random() * 8}s`,
-            size     : sizes[Math.floor(Math.random() * sizes.length)],
+            size     : sizes[Math.floor(Math.random() * sizes.length)] || sizes[0],
             rotation : `${Math.random() * 360}deg`,
-            color    : colors[Math.floor(Math.random() * colors.length)]
+            color    : colors[Math.floor(Math.random() * colors.length)] || colors[0]
         }))
     }
 

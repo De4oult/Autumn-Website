@@ -97,9 +97,7 @@
         }
     }
 
-    const config = useRuntimeConfig()
     const { locale, t } = useI18n()
-    const siteName = `${config.public.name} Framework`
 
     const { data } = await useAsyncData<RoadmapContent | null>(
         `roadmap-${locale.value}`,
@@ -108,15 +106,10 @@
             .first() as Promise<RoadmapContent | null>
     )
 
-    useHead(() => ({
-        title : t('seo.roadmap.title'),
-        meta  : [
-            { name : 'description', content : t('seo.roadmap.description') },
-            { property : 'og:title', content : `${t('seo.roadmap.title')} · ${siteName}` },
-            { property : 'og:description', content : t('seo.roadmap.description') },
-            { name : 'twitter:title', content : `${t('seo.roadmap.title')} · ${siteName}` },
-            { name : 'twitter:description', content : t('seo.roadmap.description') }
-        ]
+    useAutumnSeo(() => ({
+        title       : t('seo.roadmap.title'),
+        description : t('seo.roadmap.description'),
+        path        : '/roadmap/'
     }))
 
     const roadmap = computed(() => ({

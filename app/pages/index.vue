@@ -27,7 +27,7 @@
                     {{ $t('common.cta') }}
                 </ButtonPrimary>
                 
-                <ButtonLink :href="github" class="w-full sm:w-auto">
+                <ButtonLink :href="github" class="w-full sm:w-auto backdrop-blur-xs">
                     <Github :size="20" class="inline mr-2" />
                     GitHub
                 </ButtonLink>
@@ -157,17 +157,13 @@
     const name = config.public.name
     const version = config.public.version
     const github = config.public.github
-    const siteName = `${config.public.name} Framework`
 
-    useHead(() => ({
-        title : t('seo.home.title'),
-        meta  : [
-            { name : 'description', content : t('seo.home.description') },
-            { property : 'og:title', content : t('seo.home.social_title') || siteName },
-            { property : 'og:description', content : t('seo.home.social_description') },
-            { name : 'twitter:title', content : t('seo.home.social_title') || siteName },
-            { name : 'twitter:description', content : t('seo.home.social_description') }
-        ]
+    useAutumnSeo(() => ({
+        title             : t('seo.home.title'),
+        description       : t('seo.home.description'),
+        socialTitle       : t('seo.home.social_title'),
+        socialDescription : t('seo.home.social_description'),
+        path              : '/'
     }))
 
     const isScrolling = ref(false)

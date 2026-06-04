@@ -296,7 +296,7 @@
                 const match = item.text.match(/^@tab\s+(.+?)(?:\s+([a-z0-9_-]+))?$/i)
 
                 if(match) {
-                    pendingName = match[1]
+                    pendingName = match[1] || ''
                     pendingLang = match[2] || ''
                 }
 

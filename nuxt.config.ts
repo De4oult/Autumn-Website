@@ -1,3 +1,87 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import {
+    collectDocumentationArticlePaths,
+    type SeoDocumentationChapter,
+    type SeoDocumentationPart,
+    type SeoDocumentationSection
+} from './shared/utils/documentation';
+import { SEO_LOCALES } from './shared/utils/seo';
+
+const PROJECT_ROOT = process.cwd();
+
+const staticPrerenderRoutes = [
+    '/robots.txt',
+    '/sitemap.xml',
+    '/en/',
+    '/ru/',
+    '/en/benchmarks/',
+    '/ru/benchmarks/',
+    '/en/documentation/',
+    '/ru/documentation/',
+    '/en/releases/',
+    '/ru/releases/',
+    '/en/roadmap/',
+    '/ru/roadmap/'
+];
+
+const readDocumentationPrerenderRoutes = (): string[] => SEO_LOCALES.flatMap(locale => {
+    const filePath = join(PROJECT_ROOT, 'content', locale, 'documentation.yml');
+    const navigation = parseDocumentationNavigation(readFileSync(filePath, 'utf8'));
+
+    return collectDocumentationArticlePaths(navigation)
+        .map(article => `/${locale}${article.path}`);
+});
+
+const parseDocumentationNavigation = (source: string): SeoDocumentationSection[] => {
+    const navigation: SeoDocumentationSection[] = [];
+    let currentSection: SeoDocumentationSection | null = null;
+    let currentChapter: SeoDocumentationChapter | null = null;
+    let currentPart: SeoDocumentationPart | null = null;
+
+    for(const line of source.split(/\r?\n/)) {
+        const slugMatch = line.match(/^(\s*)-\s+slug:\s+(.+?)\s*$/);
+        const documentMatch = line.match(/^\s+document:\s+(.+?)\s*$/);
+
+        if(slugMatch) {
+            const indent = slugMatch[1]?.length || 0;
+            const slug = slugMatch[2] || '';
+
+            if(indent === 2) {
+                currentSection = {
+                    slug,
+                    chapters : []
+                };
+                currentChapter = null;
+                currentPart = null;
+                navigation.push(currentSection);
+                continue;
+            }
+
+            if(indent === 6 && currentSection) {
+                currentChapter = {
+                    slug,
+                    parts : []
+                };
+                currentPart = null;
+                currentSection.chapters?.push(currentChapter);
+                continue;
+            }
+
+            if(indent === 10 && currentChapter) {
+                currentPart = { slug };
+                currentChapter.parts?.push(currentPart);
+            }
+        }
+
+        if(documentMatch && currentPart)
+            currentPart.document = documentMatch[1] || '';
+    }
+
+    return navigation;
+};
+
 export default defineNuxtConfig({
     compatibilityDate : '2024-04-03',
     devtools          : { enabled : false },
@@ -54,30 +138,7 @@ export default defineNuxtConfig({
     nitro : {
         prerender : {
             crawlLinks : true,
-            routes     : [
-                '/en/',
-                '/ru/',
-                '/en/benchmarks/',
-                '/ru/benchmarks/',
-                '/en/documentation/',
-                '/ru/documentation/',
-                '/en/documentation/get-started/installation/local-setup/',
-                '/ru/documentation/get-started/installation/local-setup/',
-                '/en/documentation/get-started/installation/first-app/',
-                '/ru/documentation/get-started/installation/first-app/',
-                '/en/documentation/get-started/first-controller/hello-controller/',
-                '/ru/documentation/get-started/first-controller/hello-controller/',
-                '/en/documentation/get-started/first-service/minimal-service/',
-                '/ru/documentation/get-started/first-service/minimal-service/',
-                '/en/documentation/get-started/first-service/service-injection/',
-                '/ru/documentation/get-started/first-service/service-injection/',
-                '/en/documentation/get-started/final-assembly/wiring-everything/',
-                '/ru/documentation/get-started/final-assembly/wiring-everything/',
-                '/en/releases/',
-                '/ru/releases/',
-                '/en/roadmap/',
-                '/ru/roadmap/'
-            ]
+            routes     : [...staticPrerenderRoutes, ...readDocumentationPrerenderRoutes()]
         }
     },
 

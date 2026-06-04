@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-autumn-bg-card border border-autumn-border rounded-xl p-6 shadow-lg">
+    <section class="bg-autumn-bg-card/50 border border-autumn-border backdrop-blur-sm rounded-xl p-6 shadow-lg">
         <h2 class="text-xl font-bold mb-2 text-autumn-text">
             {{ title }}
         </h2>

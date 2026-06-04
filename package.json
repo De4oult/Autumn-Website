@@ -29,6 +29,7 @@
         "@nuxt/image": "^2.0.0",
         "@nuxtjs/tailwindcss": "^6.14.0",
         "@tailwindcss/postcss": "^4.2.1",
+        "@types/node": "^25.9.1",
         "eslint": "^9.39.0",
         "eslint-plugin-align-import": "^1.0.0",
         "eslint-plugin-nuxt": "^4.0.0",

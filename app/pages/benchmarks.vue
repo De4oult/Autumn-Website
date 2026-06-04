@@ -39,20 +39,12 @@
 <script setup lang="ts">
     import type { BenchmarkChartRow } from '~/components/benchmark/ChartCard.vue'
 
-    const config = useRuntimeConfig()
     const { t } = useI18n()
 
-    const siteName = `${config.public.name} Framework`
-
-    useHead(() => ({
-        title : t('seo.benchmarks.title'),
-        meta  : [
-            { name : 'description', content : t('seo.benchmarks.description') },
-            { property : 'og:title', content : `${t('seo.benchmarks.title')} · ${siteName}` },
-            { property : 'og:description', content : t('seo.benchmarks.description') },
-            { name : 'twitter:title', content : `${t('seo.benchmarks.title')} · ${siteName}` },
-            { name : 'twitter:description', content : t('seo.benchmarks.description') }
-        ]
+    useAutumnSeo(() => ({
+        title       : t('seo.benchmarks.title'),
+        description : t('seo.benchmarks.description'),
+        path        : '/benchmarks/'
     }))
 
     const NEUTRAL_BAR_COLOR = '#5A4D43'
