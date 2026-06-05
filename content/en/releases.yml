@@ -2,6 +2,20 @@
 description: See how Autumn evolves from release to release — from core improvements to new capabilities.
 
 releases:
+  - version: v0.1.4
+    date: June 5, 2026
+    changes:
+      - "Added `WebUIConfiguration` for configuring Web UI availability, themes, leaf animations, and allowed environments"
+      - "Added `Environment` and `Theme` enums for type-safe application configuration"
+      - "Introduced the @only decorator for restricting controllers, services, dependencies, middleware, and hooks to specific environments"
+      - "Components unavailable in the current environment are now automatically excluded from the DI container, routing, and OpenAPI documentation"
+      - "Added dependency graph validation during application startup to detect dependencies on disabled providers before serving requests"
+      - "Improved OpenAPI schema generation for Pydantic models and classes marked with @serializable"
+      - "Added return value analysis for `JSONResponse`, custom models, `dict`, and `list` when generating OpenAPI documentation"
+      - "Added automatic HTTP error documentation based on `raise HTTPException(...)` statements"
+      - "Added support for multiple response variants via OpenAPI `oneOf` and improved compatibility with custom `Response` classes"
+      - "Updated the documentation UI: fixed leaf rendering, added transparency and blur effects, and improved handling of long sidebar item names"
+
   - version: v0.1.1
     date: April 17, 2026
     changes:
@@ -19,8 +33,8 @@ releases:
   - version: v0.1.0
     date: April 14, 2026
     changes:
-      - Basic routing and controller support
-      - Dependency Injection Container
-      - Declarative configuration
-      - Auto-generated OpenAPI documentation and dependency graph
-      - ASGI integration with Uvicorn
+      - "Basic routing and controller support"
+      - "Dependency Injection Container"
+      - "Declarative configuration"
+      - "Auto-generated OpenAPI documentation and dependency graph"
+      - "ASGI integration with Uvicorn"

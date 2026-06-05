@@ -103,6 +103,10 @@ navigation:
             title: Сервисы
             document: documentation/dependencies/services
 
+          - slug: only-decorator
+            title: "@only"
+            document: documentation/dependencies/only-decorator
+
           - slug: dependency-graph
             title: Граф зависимостей
             document: documentation/dependencies/dependency-graph

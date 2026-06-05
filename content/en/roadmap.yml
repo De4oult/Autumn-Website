@@ -7,6 +7,7 @@ items:
     title: Ecosystem Expansion
     items:
       - First-class CLI for scaffolding, tooling, and project management
+      - Support for console commands, background jobs, and task scheduling
       - Native GraphQL support powered by Strawberry
       - Official plugin system for extending framework capabilities
       - Custom ORM engine designed for performance and flexibility
