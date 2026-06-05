@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join }         from 'node:path';
 
 import {
     collectDocumentationArticlePaths,
@@ -10,6 +10,39 @@ import {
 import { SEO_LOCALES } from './shared/utils/seo';
 
 const PROJECT_ROOT = process.cwd();
+const PYPI_PACKAGE_NAME = 'autumn-framework';
+const FALLBACK_VERSION = 'v0.1.3';
+
+type PyPiPackageInfo = {
+    info?: {
+        version?: string;
+    };
+};
+
+const normalizeVersion = (version: string): string => version.startsWith('v') ? version : `v${version}`;
+
+const fetchLatestPyPiVersion = async (): Promise<string> => {
+    try {
+        const response = await fetch(`https://pypi.org/pypi/${PYPI_PACKAGE_NAME}/json`, {
+            signal : AbortSignal.timeout(5000)
+        });
+
+        if(!response.ok)
+            return FALLBACK_VERSION;
+
+        const data = await response.json() as PyPiPackageInfo;
+        const version = data.info?.version;
+
+        if(!version)
+            return FALLBACK_VERSION;
+
+        return normalizeVersion(version);
+    } catch{
+        return FALLBACK_VERSION;
+    }
+};
+
+const latestVersion = await fetchLatestPyPiVersion();
 
 const staticPrerenderRoutes = [
     '/robots.txt',
@@ -107,7 +140,7 @@ export default defineNuxtConfig({
             description : 'Autumn is a modern Python web application framework with dependency injection, clean architecture, typed configuration, and a cozy developer experience.',
             
             name    : 'Autumn',
-            version : 'v0.1.1',
+            version : latestVersion,
             license : 'MIT License',
             
             author       : '@de4oult',
