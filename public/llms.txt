@@ -3,17 +3,17 @@
 > Autumn is a Python web application framework focused on clean architecture, dependency injection, typed configuration, and practical developer experience.
 
 ## Canonical site
-- https://autumn.de4oult.online/en
+- https://autumn.de4oult.online
 
 ## Language variants
 - Canonical language: English
 - Localized content: https://autumn.de4oult.online/ru
 
 ## Primary pages
-- Home: https://autumn.de4oult.online/en
-- Documentation: https://autumn.de4oult.online/en/documentation
-- Roadmap: https://autumn.de4oult.online/en/roadmap
-- Releases: https://autumn.de4oult.online/en/releases
+- Home: https://autumn.de4oult.online
+- Documentation: https://autumn.de4oult.online/documentation
+- Roadmap: https://autumn.de4oult.online/roadmap
+- Releases: https://autumn.de4oult.online/releases
 - GitHub: https://github.com/De4oult/Autumn
 - Sitemap: https://autumn.de4oult.online/sitemap.xml
 

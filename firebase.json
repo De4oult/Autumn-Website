@@ -9,11 +9,6 @@
         "trailingSlash": true,
         "redirects": [
             {
-                "source": "/",
-                "destination": "/en/",
-                "type": 301
-            },
-            {
                 "source": "/sitemap_index.xml",
                 "destination": "/sitemap.xml",
                 "type": 301

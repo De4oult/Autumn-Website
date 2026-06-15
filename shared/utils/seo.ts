@@ -55,6 +55,9 @@ export const stripLocalePrefix = (path: string): string => {
 export const buildLocalizedPath = (locale: SeoLocale, path: string): string => {
     const localPath = stripLocalePrefix(path);
 
+    if(locale === SEO_DEFAULT_LOCALE)
+        return localPath;
+
     if(localPath === '/')
         return `/${locale}/`;
 

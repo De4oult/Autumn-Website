@@ -47,15 +47,15 @@ const latestVersion = await fetchLatestPyPiVersion();
 const staticPrerenderRoutes = [
     '/robots.txt',
     '/sitemap.xml',
-    '/en/',
+    '/',
     '/ru/',
-    '/en/benchmarks/',
+    '/benchmarks/',
     '/ru/benchmarks/',
-    '/en/documentation/',
+    '/documentation/',
     '/ru/documentation/',
-    '/en/releases/',
+    '/releases/',
     '/ru/releases/',
-    '/en/roadmap/',
+    '/roadmap/',
     '/ru/roadmap/'
 ];
 
@@ -64,7 +64,9 @@ const readDocumentationPrerenderRoutes = (): string[] => SEO_LOCALES.flatMap(loc
     const navigation = parseDocumentationNavigation(readFileSync(filePath, 'utf8'));
 
     return collectDocumentationArticlePaths(navigation)
-        .map(article => `/${locale}${article.path}`);
+        .map(article => locale === 'en'
+            ? article.path
+            : `/${locale}${article.path}`);
 });
 
 const parseDocumentationNavigation = (source: string): SeoDocumentationSection[] => {
@@ -159,11 +161,7 @@ export default defineNuxtConfig({
             { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
         langDir      : 'locales',
-        rootRedirect : {
-            statusCode : 301,
-            path       : '/en/'
-        },
-        strategy      : 'prefix',
+        strategy      : 'prefix_except_default',
         trailingSlash : true,
         vueI18n       : './i18n.config.ts'
     },
