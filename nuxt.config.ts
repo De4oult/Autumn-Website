@@ -160,7 +160,7 @@ export default defineNuxtConfig({
             { code : 'en', language : 'en-US', file : 'english.json' },
             { code : 'ru', language : 'ru-RU', file : 'russian.json' }
         ],
-        langDir      : 'locales',
+        langDir       : 'locales',
         strategy      : 'prefix_except_default',
         trailingSlash : true,
         vueI18n       : './i18n.config.ts'
