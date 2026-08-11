@@ -94,18 +94,18 @@ interface Benchmark {
 export const rawBenchmarks: Benchmark[] = [
     {
         name : 'Falcon',
-        rps  : 4471
+        rps  : 8022
+    },
+    {
+        name : 'Starlette',
+        rps  : 7938
     },
     { 
         name : 'Autumn', 
-        rps  : 4006
+        rps  : 7798
     },
     { 
         name : 'FastAPI', 
-        rps  : 3644
-    },
-    { 
-        name : 'Flask', 
-        rps  : 2149
+        rps  : 6337
     }
 ];

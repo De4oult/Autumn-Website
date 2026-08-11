@@ -101,7 +101,7 @@ This hook prevents the application from starting normally.
 
 ## Where to Declare Hooks
 
-Hooks can be declared near the application or in modules Autumn discovers during startup.
+Hooks can be declared near the application or in modules explicitly listed in `Autumn(discover = ...)`.
 
 ```python
 from autumn import Autumn, startup

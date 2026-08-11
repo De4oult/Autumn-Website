@@ -137,6 +137,28 @@ return FileResponse(
 )
 ```
 
+Use `FileResponse.from_root(...)` whenever the requested filename contains user input. It resolves the real path, including symbolic links, and rejects files outside the allowed directory.
+
+```python
+from pathlib import Path
+
+DOWNLOADS = Path('downloads')
+
+@get('/files/{filename:path}')
+async def user_file(self, filename: str):
+    return FileResponse.from_root(
+        DOWNLOADS,
+        filename,
+        download = True
+    )
+```
+
+Direct `FileResponse(path)` remains appropriate for trusted, application-controlled paths.
+
+## Header Validation
+
+All response types validate header names and values before sending them. Invalid HTTP token characters in a name, non-string values, and CR, LF, or NUL characters in a value raise `InvalidHeaderError` from `autumn.response`. This prevents malformed headers and response splitting.
+
 ## StreamFileResponse
 
 `StreamFileResponse` sends a file in chunks. It is a better fit for large files.

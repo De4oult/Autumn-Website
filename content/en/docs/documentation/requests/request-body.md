@@ -84,3 +84,18 @@ class UserController:
 ```
 
 This is usually more convenient than manual `request.json()` when the request has an expected structure.
+
+## Body Size Limit
+
+Autumn limits HTTP request bodies to 1 MiB by default. The limit applies both to the declared `Content-Length` and to the chunks actually received from ASGI. A request that exceeds it receives `413 Payload Too Large`.
+
+Override the limit through `ApplicationConfiguration`:
+
+```python
+from autumn.configuration import ApplicationConfiguration
+
+class MyApplicationConfiguration(ApplicationConfiguration):
+    max_request_body_bytes = 8 * 1024 * 1024
+```
+
+Set the value to `0` to reject every non-empty request body. Set it to `None` only when an unbounded body is intentional; for public applications, a finite limit is safer.

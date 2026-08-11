@@ -15,6 +15,14 @@ app/
 main.py
 ```
 
+The entry point explicitly lists the controller module:
+
+```python
+from autumn import Autumn
+
+app = Autumn(discover = 'app.controllers')
+```
+
 ## Final Result
 The application now looks predictable:
 controllers receive requests, services execute logic, and the structure stays readable even as the project grows.

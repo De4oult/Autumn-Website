@@ -137,6 +137,28 @@ return FileResponse(
 )
 ```
 
+Если имя запрашиваемого файла содержит пользовательский ввод, используй `FileResponse.from_root(...)`. Метод разрешает реальный путь с учётом символических ссылок и отклоняет файлы за пределами разрешённой директории.
+
+```python
+from pathlib import Path
+
+DOWNLOADS = Path('downloads')
+
+@get('/files/{filename:path}')
+async def user_file(self, filename: str):
+    return FileResponse.from_root(
+        DOWNLOADS,
+        filename,
+        download = True
+    )
+```
+
+Прямой вызов `FileResponse(path)` по-прежнему подходит для доверенных путей, которые полностью контролирует приложение.
+
+## Валидация заголовков
+
+Все типы ответов проверяют имена и значения заголовков перед отправкой. Недопустимые символы HTTP token в имени, нестроковые значения, а также CR, LF и NUL в значении приводят к `InvalidHeaderError` из `autumn.response`. Это защищает от некорректных заголовков и response splitting.
+
 ## StreamFileResponse
 
 `StreamFileResponse` отправляет файл чанками. Это лучше подходит для больших файлов.

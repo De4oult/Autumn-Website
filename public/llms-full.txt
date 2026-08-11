@@ -6,13 +6,21 @@ Project status:
 - Public website: https://autumn.de4oult.online
 - Localized Russian version: https://autumn.de4oult.online/ru
 - Repository: https://github.com/De4oult/Autumn
-- Latest public release listed on the site: v0.1.1
+- Latest public release listed on the site: v0.1.5
 
 Key ideas:
 - Explicit dependency injection instead of hidden global service state.
 - Typed configuration for runtime settings and environment-based deployment.
 - Decorator-based routing for clear controller design.
 - A practical architecture suitable for both small applications and long-lived codebases.
+- Explicit module discovery without recursive project scanning.
+- A configurable 1 MiB default HTTP request body limit, safe rooted file responses, strict response header validation, and safe annotation parsing.
+- Compiled route execution plans, cached middleware composition, and indexed dynamic routing.
+
+Latest benchmark snapshot (August 12, 2026):
+- Repeated local run on Windows and Python 3.12 with Uvicorn, asyncio, httptools, concurrency 64, and five randomized repetitions.
+- Average median throughput: Falcon 8,021.93 req/s, Starlette 7,937.69 req/s, Autumn 7,797.78 req/s, FastAPI 6,336.61 req/s.
+- In this environment, Autumn was 23.06% faster than FastAPI, 1.76% behind Starlette, and 2.79% behind Falcon.
 
 Important URLs:
 - Homepage: https://autumn.de4oult.online

@@ -93,13 +93,12 @@
                 "subtitle" : "Requests per second"
             },
             "latency" : {
-                "title" : "Average Latency",
-                "subtitle" : "Milliseconds"
+                "title" : "Latency",
+                "subtitle" : "Average median p95 across scenarios"
             },
-            "methodology" : {
-                "title" : "Methodology",
-                "body" : "Benchmarks were run on an AWS c5.large instance using `wrk` with 4 threads and 100 connections for 30 seconds. Each framework implemented a simple JSON response endpoint returning a static dictionary.",
-                "disclaimer" : "Benchmarks are indicative. Real-world performance depends heavily on your database, ORM, and business logic. Autumn prioritizes developer experience and maintainability while keeping performance overhead minimal."
+            "scenarios" : {
+                "title" : "Autumn by scenario",
+                "subtitle" : "Median requests per second"
             }
         }
     },

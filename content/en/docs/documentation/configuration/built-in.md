@@ -31,7 +31,11 @@ class ApplicationConfiguration(Configuration):
 
     workers: int = 1
     log_level: str = 'info'
+
+    max_request_body_bytes: Optional[int] = 1024 * 1024
 ```
+
+`max_request_body_bytes` is the maximum accepted HTTP request body size. `0` rejects non-empty bodies and `None` disables the limit.
 
 To override it, create a subclass.
 

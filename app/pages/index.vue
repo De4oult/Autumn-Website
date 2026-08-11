@@ -268,7 +268,7 @@ class UserController:
 
 import uvicorn
 
-app = Autumn()
+app = Autumn(discover = 'controllers')
 
 if __name__ == '__main__':
     uvicorn.run(app)

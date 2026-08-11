@@ -11,7 +11,7 @@ import { SEO_LOCALES } from './shared/utils/seo';
 
 const PROJECT_ROOT = process.cwd();
 const PYPI_PACKAGE_NAME = 'autumn-framework';
-const FALLBACK_VERSION = 'v0.1.3';
+const FALLBACK_VERSION = 'v0.1.5';
 
 type PyPiPackageInfo = {
     info?: {

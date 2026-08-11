@@ -99,7 +99,7 @@ async def connect_database():
 
 ## Где объявлять hook'и
 
-Hook'и можно объявлять рядом с приложением или в модулях, которые Autumn обнаруживает при старте.
+Hook'и можно объявлять рядом с приложением или в модулях, явно перечисленных в `Autumn(discover = ...)`.
 
 ```python
 from autumn import Autumn, startup

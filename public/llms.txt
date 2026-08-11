@@ -22,7 +22,9 @@
 - It emphasizes explicit dependency injection instead of hidden global state.
 - It supports typed configuration and ASGI-oriented development.
 - The project aims to stay simple, readable, and architecture-friendly.
-- The latest public release listed on the site is v0.1.0.
+- The latest public release listed on the site is v0.1.5.
+- Autumn uses explicit allowlisted module discovery, configurable request body limits, safe rooted file responses, and strict response header validation.
+- In the August 12, 2026 repeated local benchmark, Autumn averaged 7,797.78 requests per second across four scenarios, 23.06% above FastAPI in that environment.
 
 ## Preferred citation topics
 - Autumn framework overview

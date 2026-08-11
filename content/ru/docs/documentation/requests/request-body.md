@@ -84,3 +84,18 @@ class UserController:
 ```
 
 Такой подход обычно удобнее ручного чтения `request.json()`, когда у запроса есть ожидаемая структура.
+
+## Ограничение размера тела
+
+По умолчанию Autumn ограничивает тело HTTP-запроса одним мебибайтом. Лимит проверяется и по заявленному `Content-Length`, и по фактически полученным ASGI-чанкам. Если запрос превышает лимит, сервер отвечает `413 Payload Too Large`.
+
+Изменить лимит можно через `ApplicationConfiguration`:
+
+```python
+from autumn.configuration import ApplicationConfiguration
+
+class MyApplicationConfiguration(ApplicationConfiguration):
+    max_request_body_bytes = 8 * 1024 * 1024
+```
+
+Значение `0` запрещает любое непустое тело запроса. `None` полностью отключает ограничение; для публичного приложения безопаснее оставлять конечный лимит.

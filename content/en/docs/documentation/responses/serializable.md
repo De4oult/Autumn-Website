@@ -143,3 +143,9 @@ class User:
 ```
 
 Both can be returned from controllers: Autumn automatically serializes Pydantic models and `@serializable` objects.
+
+## Safe Annotation Resolution
+
+Autumn resolves `@serializable` annotations with a restricted syntax parser rather than executing annotation text. Names, public module/type attributes, generics, tuples, lists, constants, and union expressions with `|` are supported. Calls, lambdas, comprehensions, and private or dunder attribute access are rejected and treated as `Any`; `Private[...]` fields remain private.
+
+Keep annotations declarative. Expressions with side effects are neither needed nor executed.

@@ -31,7 +31,11 @@ class ApplicationConfiguration(Configuration):
 
     workers: int = 1
     log_level: str = 'info'
+
+    max_request_body_bytes: Optional[int] = 1024 * 1024
 ```
+
+`max_request_body_bytes` задаёт максимальный размер тела HTTP-запроса. `0` запрещает непустые тела, а `None` отключает лимит.
 
 Чтобы переопределить ее, создай класс-наследник.
 

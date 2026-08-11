@@ -24,4 +24,4 @@ class HelloController:
 - `@REST(...)` groups routes within a single controller and defines a shared prefix.
 - `@get` defines the HTTP method and path for the handler.
 - `JSONResponse` serializes the `dict` to `JSON` and returns a proper HTTP response with the required headers.
-- The controller module must be imported by the application or discovered by Autumn during startup.
+- The controller module must be imported normally or listed explicitly in `Autumn(discover = ...)`.

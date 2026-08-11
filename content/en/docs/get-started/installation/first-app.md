@@ -12,7 +12,9 @@ from autumn import Autumn
 
 import uvicorn
 
-app = Autumn()
+app = Autumn(
+    discover = 'app.controllers'
+)
 
 if __name__ == '__main__':
     uvicorn.run(app)
@@ -26,4 +28,6 @@ if __name__ == '__main__':
 
 ## How Other Parts Are Connected
 
-Controllers, services, leaf functions, and hooks must live in imported application modules or in modules Autumn discovers during startup. On the next step, we will place the controller in `app/controllers` and keep application assembly in `main.py`.
+Controllers, services, leaf functions, and hooks must live in imported modules. Use `discover` to specify the module that contains them. Here, `app.controllers` connects the controllers package; one module is passed as a string, while several modules can be passed as a tuple or list.
+
+In the next step, we will create the first controller in `app/controllers/hello.py`. The application assembly remains in `main.py`.

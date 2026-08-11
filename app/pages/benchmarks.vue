@@ -10,14 +10,14 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <BenchmarkChartCard
                 :title="$t('page.benchmarks.throughput.title')"
                 :subtitle="$t('page.benchmarks.throughput.subtitle')"
                 
                 :data="throughputData"
                 
-                :tick-values="[0, 1000, 2000, 3000, 4000, 5000]"
+                :tick-values="[0, 2000, 4000, 6000, 8000, 10000]"
                 :tick-formatter="formatThroughputAxis"
                 :value-formatter="formatExactThroughput"
             />
@@ -28,11 +28,22 @@
 
                 :data="latencyData"
 
-                :tick-values="[0, 10, 20, 30, 40]"
+                :tick-values="[0, 3, 6, 9, 12, 15]"
                 :tick-formatter="formatLatencyAxis"
                 :value-formatter="formatExactLatency"
             />
         </div>
+
+        <BenchmarkChartCard
+            :title="$t('page.benchmarks.scenarios.title')"
+            :subtitle="$t('page.benchmarks.scenarios.subtitle')"
+
+            :data="autumnScenarioData"
+
+            :tick-values="[0, 2000, 4000, 6000, 8000, 10000]"
+            :tick-formatter="formatThroughputAxis"
+            :value-formatter="formatExactThroughput"
+        />
     </div>
 </template>
 
@@ -52,28 +63,28 @@
 
     const frameworkResults = [
         { 
-            name    : 'Flask', 
-            rps     : 2149.76, 
-            latency : 33.06, 
-            color   : NEUTRAL_BAR_COLOR
+            name       : 'Falcon',
+            rps        : 8021.93,
+            latency    : 9.33,
+            color      : NEUTRAL_BAR_COLOR
         },
-        { 
-            name    : 'FastAPI', 
-            rps     : 3644.17, 
-            latency : 19.49, 
-            color   : NEUTRAL_BAR_COLOR 
+        {
+            name       : 'Starlette',
+            rps        : 7937.69,
+            latency    : 9.58,
+            color      : NEUTRAL_BAR_COLOR
         },
-        { 
-            name    : 'Autumn', 
-            rps     : 4006.67, 
-            latency : 17.38, 
-            color   : ACCENT_BAR_COLOR 
+        {
+            name       : 'Autumn',
+            rps        : 7797.78,
+            latency    : 9.62,
+            color      : ACCENT_BAR_COLOR
         },
-        { 
-            name    : 'Falcon', 
-            rps     : 4471.53, 
-            latency : 16.66, 
-            color   : NEUTRAL_BAR_COLOR 
+        {
+            name       : 'FastAPI',
+            rps        : 6336.61,
+            latency    : 11.36,
+            color      : NEUTRAL_BAR_COLOR
         }
     ]
 
@@ -88,6 +99,13 @@
         value     : framework.latency,
         color     : framework.color
     }))
+
+    const autumnScenarioData: BenchmarkChartRow[] = [
+        { framework : 'Plaintext', value : 8107.42, color : ACCENT_BAR_COLOR },
+        { framework : 'JSON', value : 8223.67, color : ACCENT_BAR_COLOR },
+        { framework : 'Path parameter', value : 7993.92, color : ACCENT_BAR_COLOR },
+        { framework : 'Validated body', value : 6866.13, color : ACCENT_BAR_COLOR }
+    ]
 
     const formatThroughputAxis = (tick: number | Date): string =>
         typeof tick === 'number' ? tick.toLocaleString() : ''
