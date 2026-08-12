@@ -5,6 +5,8 @@ releases:
   - version: v0.1.5
     date: August 12, 2026
     changes:
+      - "Added the `autumn.security` module with `Principal`, `SecurityConfiguration`, `APIKey` and `JWTBearer` schemes, plus `@authenticated`, `@public`, `@roles`, `@permissions`, `@requires`, and `@policy` decorators"
+      - "Integrated authorization with DI: `Principal` is available in controllers and policies, while access rules can use request, path, and query parameters together with application services"
       - "Added explicit module and package discovery through `Autumn(discover = ...)`; listed packages load all Python modules and nested packages inside them"
       - "Added a 1 MiB default request body limit configurable through `ApplicationConfiguration.max_request_body_bytes`, with `413 Payload Too Large` for oversized requests"
       - "Added `FileResponse.from_root(...)` to keep user-selected files inside an allowed directory, including protection against traversal and symbolic-link escapes"
@@ -14,7 +16,6 @@ releases:
       - "Compiled route execution plans and cached middleware composition per route and method; immutable response metadata and body bytes are now encoded once"
       - "Improved dynamic routing with static-prefix indexes"
       - "Added `pip-audit` to development and CI dependency checks and raised the minimum secure `click` version to 8.3.3"
-      - "In the repeated 80-measurement benchmark, Autumn averaged 7,797.78 req/s: 23.06% faster than FastAPI, 1.76% behind Starlette, and 2.79% behind Falcon"
 
   - version: v0.1.4
     date: June 5, 2026

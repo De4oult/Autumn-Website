@@ -40,6 +40,16 @@ navigation:
             title: Связываем всё вместе
             document: get-started/final-assembly/wiring-everything
 
+  - slug: examples
+    title: Примеры
+    chapters:
+      - slug: web-apps
+        title: Веб-приложения
+        parts:
+          - slug: authorization
+            title: Приложение с авторизацией
+            document: examples/web-apps/authorization
+
   - slug: documentation
     title: Документация
     chapters:
@@ -110,6 +120,13 @@ navigation:
           - slug: dependency-graph
             title: Граф зависимостей
             document: documentation/dependencies/dependency-graph
+
+      - slug: security
+        title: Security
+        parts:
+          - slug: authorization
+            title: Авторизация
+            document: documentation/security/authorization
 
       - slug: lifecycle
         title: Жизненный цикл
