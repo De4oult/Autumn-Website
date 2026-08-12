@@ -75,7 +75,7 @@ export const documentation = [
         icon        : Code,
         title       : 'data.documentation.examples.title',
         description : 'data.documentation.examples.description',
-        to          : '/documentation/get-started/first-controller/hello-controller'
+        to          : '/documentation/examples/web-apps/authorization'
     },
     {
         icon        : FileText,

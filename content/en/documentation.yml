@@ -40,6 +40,16 @@ navigation:
             title: Wiring Everything
             document: get-started/final-assembly/wiring-everything
 
+  - slug: examples
+    title: Examples
+    chapters:
+      - slug: web-apps
+        title: Web Apps
+        parts:
+          - slug: authorization
+            title: App with Authorization
+            document: examples/web-apps/authorization
+
   - slug: documentation
     title: Documentation
     chapters:
@@ -110,6 +120,13 @@ navigation:
           - slug: dependency-graph
             title: Dependency Graph
             document: documentation/dependencies/dependency-graph
+
+      - slug: security
+        title: Security
+        parts:
+          - slug: authorization
+            title: Authorization
+            document: documentation/security/authorization
 
       - slug: lifecycle
         title: Lifecycle
