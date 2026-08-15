@@ -86,6 +86,51 @@ async def mock_payment_gateway() -> PaymentGateway:
 
 If the current environment is not included in the allowed list, the provider will not be registered in the dependency injection container.
 
+## Environment-Specific Implementations
+
+When different implementations are enabled in different environments, use a union type in the dependency signature.
+
+```python
+from autumn import Environment, only, service
+
+@only(Environment.DEVELOPMENT)
+@service
+class MockGateway:
+    def name(self) -> str:
+        return 'mock'
+
+@only(Environment.PRODUCTION)
+@service
+class LiveGateway:
+    def name(self) -> str:
+        return 'live'
+
+@service
+class CheckoutService:
+    def __init__(self, gateway: MockGateway | LiveGateway):
+        self.gateway = gateway
+```
+
+Autumn selects the dependency whose `@only(...)` environments match the current application environment.
+
+If the application runs in `DEVELOPMENT`, `MockGateway` is injected. If it runs in `PRODUCTION`, `LiveGateway` is injected.
+
+The allowed environments must not overlap. This would be ambiguous:
+
+```python
+@only(Environment.DEVELOPMENT)
+@service
+class FirstGateway:
+    ...
+
+@only(Environment.DEVELOPMENT, Environment.LOCAL)
+@service
+class SecondGateway:
+    ...
+```
+
+For `FirstGateway | SecondGateway`, Autumn will reject this during dependency validation because both implementations are available in `DEVELOPMENT`.
+
 ## Dependency validation
 
 Autumn validates the dependency graph during application startup.
@@ -107,6 +152,23 @@ class PaymentService:
 If the application is started in `PRODUCTION`, Autumn will detect that `PaymentService` requires a dependency that is unavailable in the current environment and will stop the startup process.
 
 This behavior helps catch configuration errors before the application begins handling requests.
+
+Autumn also checks dependency graphs for other environments and prints warnings when the current environment can start, but another environment would fail.
+
+```python
+@only(Environment.LOCAL)
+@service
+class LocalGateway:
+    ...
+
+@only(Environment.PRODUCTION)
+@service
+class ProductionCheckoutService:
+    def __init__(self, gateway: LocalGateway):
+        self.gateway = gateway
+```
+
+If the app runs in `LOCAL`, it can start because `ProductionCheckoutService` is not active. Autumn will still warn that the `PRODUCTION` graph would fail because `LocalGateway` is not available there.
 
 ## What happens when the environment does not match
 

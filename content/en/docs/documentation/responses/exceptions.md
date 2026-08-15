@@ -36,11 +36,82 @@ JSON error response:
 
 ```json
 {
-    "status"  : 404,
-    "title"   : "User not found",
-    "details" : "User with this id does not exist"
+    "status": 404,
+    "title": "User not found",
+    "details": "User with this id does not exist",
+    "request_id": "req-01H..."
 }
 ```
+
+Autumn adds `request_id` when the current request has one.
+
+## Request ID
+
+Every HTTP response gets an `X-Request-ID` header.
+
+Autumn uses the first available value:
+
+- `X-Request-ID`
+- `X-Correlation-ID`
+- an automatically generated id
+
+The same id is available in JSON error responses.
+
+```http
+X-Request-ID: req-123
+```
+
+```json
+{
+    "status": 409,
+    "title": "Something",
+    "details": "Conflict",
+    "request_id": "req-123"
+}
+```
+
+## Meta and Custom Body
+
+Use `meta` for structured error details that should live next to the standard error shape.
+
+```python
+raise HTTPException(
+    status = 409,
+    details = 'Email already exists',
+    meta = {
+        'field': 'email',
+        'code': 'duplicate'
+    }
+)
+```
+
+JSON response:
+
+```json
+{
+    "status": 409,
+    "title": "Something",
+    "details": "Email already exists",
+    "request_id": "req-123",
+    "meta": {
+        "field": "email",
+        "code": "duplicate"
+    }
+}
+```
+
+If you need a fully custom error payload, pass `body`.
+
+```python
+raise HTTPException(
+    status = 400,
+    body = {
+        'error': 'invalid_payload'
+    }
+)
+```
+
+Autumn still adds `request_id` unless the custom body already contains it.
 
 ## Response Format
 
@@ -103,6 +174,8 @@ async def exception(self):
 ```
 
 The client receives HTTP `500`, and the exception text is placed into `details`.
+
+In production, Autumn returns a generic `Internal Server Error` instead of exposing internal exception details.
 
 ## Handling Through Middleware
 

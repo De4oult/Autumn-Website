@@ -85,6 +85,51 @@ async def mock_payment_gateway() -> PaymentGateway:
 
 Если окружение не соответствует списку разрешённых, провайдер не будет зарегистрирован в DI-контейнере.
 
+## Реализации под разные окружения
+
+Когда разные реализации включены в разных окружениях, используй union type в сигнатуре зависимости.
+
+```python
+from autumn import Environment, only, service
+
+@only(Environment.DEVELOPMENT)
+@service
+class MockGateway:
+    def name(self) -> str:
+        return 'mock'
+
+@only(Environment.PRODUCTION)
+@service
+class LiveGateway:
+    def name(self) -> str:
+        return 'live'
+
+@service
+class CheckoutService:
+    def __init__(self, gateway: MockGateway | LiveGateway):
+        self.gateway = gateway
+```
+
+Autumn выберет зависимость, у которой `@only(...)` соответствует текущему окружению приложения.
+
+Если приложение запущено в `DEVELOPMENT`, будет внедрён `MockGateway`. Если в `PRODUCTION` — `LiveGateway`.
+
+Окружения у вариантов не должны пересекаться. Такой пример неоднозначен:
+
+```python
+@only(Environment.DEVELOPMENT)
+@service
+class FirstGateway:
+    ...
+
+@only(Environment.DEVELOPMENT, Environment.LOCAL)
+@service
+class SecondGateway:
+    ...
+```
+
+Для `FirstGateway | SecondGateway` Autumn остановит запуск во время проверки зависимостей, потому что обе реализации доступны в `DEVELOPMENT`.
+
 ## Проверка зависимостей
 
 Autumn проверяет граф зависимостей во время запуска приложения.
@@ -106,6 +151,23 @@ class PaymentService:
 Если приложение запускается в `PRODUCTION`, Autumn обнаружит, что `PaymentService` требует зависимость, недоступную в этом окружении, и остановит запуск.
 
 Такое поведение помогает обнаруживать ошибки конфигурации до начала обработки запросов.
+
+Autumn также проверяет графы зависимостей для других окружений и печатает warning, если текущее окружение может стартовать, но в другом окружении граф сломается.
+
+```python
+@only(Environment.LOCAL)
+@service
+class LocalGateway:
+    ...
+
+@only(Environment.PRODUCTION)
+@service
+class ProductionCheckoutService:
+    def __init__(self, gateway: LocalGateway):
+        self.gateway = gateway
+```
+
+Если приложение запущено в `LOCAL`, оно сможет стартовать, потому что `ProductionCheckoutService` не активен. Но Autumn предупредит, что в `PRODUCTION` граф зависимостей упадёт, потому что `LocalGateway` там недоступен.
 
 ## Что происходит при несовпадении окружения
 

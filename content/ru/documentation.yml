@@ -102,6 +102,17 @@ navigation:
             title: "@serializable"
             document: documentation/responses/serializable
 
+      - slug: resources
+        title: Ресурсы
+        parts:
+          - slug: resources
+            title: Resources
+            document: documentation/resources/resources
+
+          - slug: localization
+            title: Локализация
+            document: documentation/resources/localization
+
       - slug: dependencies
         title: Зависимости
         parts:

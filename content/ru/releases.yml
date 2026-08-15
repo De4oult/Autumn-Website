@@ -2,6 +2,20 @@
 description: Посмотрите, как Autumn развивается от релиза к релизу — от изменений в ядре до новых возможностей.
 
 releases:
+  - version: v0.1.6
+    date: 15 августа 2026
+    changes:
+      - "Добавлен `autumn.resources.Resources` — singleton-корень ресурсов для статических файлов, JSON/YAML-данных и безопасных file responses внутри заданной директории"
+      - "Добавлены `ResourceType` и единый API `Resources(...).read(..., ResourceType.TEXT | ResourceType.BYTES | ResourceType.DATA)`"
+      - "Добавлена request-scoped локализация через `I18n`, `Locale` и `LocalizationConfiguration`; локаль выбирается из `Accept-Language`, а сообщения загружаются из `.json`, `.yaml` или `.yml`"
+      - "Добавлен `I18n.plural(...)` с дефолтным поведением `one/many` и кастомными plural rules через `LocalizationConfiguration.plural_rules`"
+      - "Для отсутствующих файлов локализации добавлен fallback на сам ключ перевода и warning в консоль"
+      - "Добавлены environment-aware union-зависимости для `@only`: зависимости вида `MockGateway | LiveGateway` выбирают провайдер, разрешённый в текущем окружении"
+      - "Autumn теперь отклоняет union-зависимости с пересекающимися окружениями, чтобы выбор провайдера не был неоднозначным"
+      - "Добавлены cross-environment warning'и для `@only`: Autumn предупреждает, если приложение стартует в одном окружении, но DI-граф сломается в другом"
+      - "Улучшен `HTTPException`: добавлены `request_id`, `meta` и возможность передать кастомный `body`"
+      - "HTTP-ответы теперь получают заголовок `X-Request-ID`: значение берётся из `X-Request-ID`, `X-Correlation-ID` или генерируется автоматически"
+
   - version: v0.1.5
     date: 12 августа 2026
     changes:

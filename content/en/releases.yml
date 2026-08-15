@@ -2,6 +2,20 @@
 description: See how Autumn evolves from release to release — from core improvements to new capabilities.
 
 releases:
+  - version: v0.1.6
+    date: August 15, 2026
+    changes:
+      - "Added `autumn.resources.Resources` as a singleton resource root for static files, JSON/YAML data, and safe rooted file responses"
+      - "Added `ResourceType` and the unified `Resources(...).read(..., ResourceType.TEXT | ResourceType.BYTES | ResourceType.DATA)` API"
+      - "Added request-scoped localization with `I18n`, `Locale`, and `LocalizationConfiguration`; locales are resolved from `Accept-Language` and loaded from `.json`, `.yaml`, or `.yml` resource files"
+      - "Added `I18n.plural(...)` with default `one/many` behavior and custom plural rules through `LocalizationConfiguration.plural_rules`"
+      - "Added key fallback and console warnings for missing locale files, keeping applications usable while exposing configuration mistakes during development"
+      - "Added environment-aware union dependencies for `@only`: dependencies such as `MockGateway | LiveGateway` now resolve to the provider allowed in the current environment"
+      - "Autumn now rejects union dependencies whose allowed environments overlap, preventing ambiguous dependency selection at startup"
+      - "Added cross-environment `@only` dependency graph warnings for components that can start in one environment but fail in another"
+      - "Improved `HTTPException` with `request_id`, `meta`, and custom `body` support"
+      - "HTTP responses now include `X-Request-ID`, using `X-Request-ID`, `X-Correlation-ID`, or an automatically generated value"
+
   - version: v0.1.5
     date: August 12, 2026
     changes:

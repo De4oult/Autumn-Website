@@ -36,11 +36,82 @@ JSON-ответ ошибки выглядит так:
 
 ```json
 {
-    "status"  : 404,
-    "title"   : "User not found",
-    "details" : "User with this id does not exist"
+    "status": 404,
+    "title": "User not found",
+    "details": "User with this id does not exist",
+    "request_id": "req-01H..."
 }
 ```
+
+Autumn добавляет `request_id`, если он есть у текущего запроса.
+
+## Request ID
+
+Каждый HTTP-ответ получает заголовок `X-Request-ID`.
+
+Autumn берёт первое доступное значение:
+
+- `X-Request-ID`
+- `X-Correlation-ID`
+- автоматически сгенерированный id
+
+Этот же id попадает в JSON-ответ ошибки.
+
+```http
+X-Request-ID: req-123
+```
+
+```json
+{
+    "status": 409,
+    "title": "Something",
+    "details": "Conflict",
+    "request_id": "req-123"
+}
+```
+
+## Meta и кастомный body
+
+Используй `meta` для структурированных деталей ошибки, которые должны жить рядом со стандартным форматом.
+
+```python
+raise HTTPException(
+    status = 409,
+    details = 'Email already exists',
+    meta = {
+        'field': 'email',
+        'code': 'duplicate'
+    }
+)
+```
+
+JSON-ответ:
+
+```json
+{
+    "status": 409,
+    "title": "Something",
+    "details": "Email already exists",
+    "request_id": "req-123",
+    "meta": {
+        "field": "email",
+        "code": "duplicate"
+    }
+}
+```
+
+Если нужен полностью свой payload ошибки, передай `body`.
+
+```python
+raise HTTPException(
+    status = 400,
+    body = {
+        'error': 'invalid_payload'
+    }
+)
+```
+
+Autumn всё равно добавит `request_id`, если в кастомном body его ещё нет.
 
 ## Формат ответа
 
@@ -103,6 +174,8 @@ async def exception(self):
 ```
 
 Клиент получит HTTP-ответ со статусом `500`, а текст исключения попадет в `details`.
+
+В production Autumn возвращает обобщённый `Internal Server Error` и не раскрывает внутренние детали исключения.
 
 ## Обработка через middleware
 

@@ -9,6 +9,7 @@ Autumn содержит несколько встроенных конфигур
 from autumn.configuration import (
     ApplicationConfiguration,
     CORSConfiguration,
+    LocalizationConfiguration,
     WebsocketConfiguration
 )
 ```
@@ -79,6 +80,31 @@ class MyCORSConfiguration(CORSConfiguration):
 ```
 
 Такая конфигурация разрешит CORS-запросы с заголовком `authorization` для `POST`.
+
+## LocalizationConfiguration
+
+`LocalizationConfiguration` управляет request-scoped локализацией.
+
+```python
+from autumn.resources import Resources
+
+class LocalizationConfiguration(Configuration):
+    supported_locales = ('en',)
+    default_locale = 'en'
+    source_header = 'Accept-Language'
+    locales = Resources('resources/locales')
+    plural_rules = {}
+```
+
+`supported_locales` задаёт список локалей, которые Autumn может выбрать.
+
+`default_locale` используется, если запрос не передал поддерживаемую локаль.
+
+`source_header` указывает, из какого заголовка запроса выбирать локаль.
+
+`locales` указывает на `Resources`-root с файлами вроде `en.json`, `ru.yaml` или `ka.yml`.
+
+`plural_rules` связывает имена локалей или правил с функциями, которые использует `I18n.plural(...)`.
 
 ## WebsocketConfiguration
 
