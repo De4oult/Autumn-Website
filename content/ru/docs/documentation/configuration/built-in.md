@@ -12,6 +12,7 @@ from autumn.configuration import (
     LocalizationConfiguration,
     WebsocketConfiguration
 )
+from autumn import Environment
 ```
 
 ## ApplicationConfiguration
@@ -24,6 +25,7 @@ class ApplicationConfiguration(Configuration):
     version: str = 'v0.1.0'
 
     description: Optional[str] = None
+    environment: Environment = Environment.LOCAL
 
     host: str = '127.0.0.1'
     port: int = 8000
@@ -38,15 +40,21 @@ class ApplicationConfiguration(Configuration):
 
 `max_request_body_bytes` задаёт максимальный размер тела HTTP-запроса. `0` запрещает непустые тела, а `None` отключает лимит.
 
+`environment` задаёт текущее окружение приложения и является единственным источником правды для `@only`, доступности Web UI и production-safe поведения ошибок. По умолчанию используется `Environment.LOCAL`.
+
+Окружение больше не передаётся в `Autumn(...)`. Настраивай его через наследника `ApplicationConfiguration`.
+
 Чтобы переопределить ее, создай класс-наследник.
 
 ```python
+from autumn import Environment
 from autumn.configuration import ApplicationConfiguration, source, Maple
 
 @source.env(prefix = 'APP_')
 class MyApplicationConfiguration(ApplicationConfiguration):
     name: Maple['name', str] = 'My API'
     port: Maple['port', int] = 3000
+    environment: Maple['environment', Environment] = Environment.LOCAL
 ```
 
 Если пользовательская конфигурация наследуется от встроенной, Autumn будет использовать ее как эффективную конфигурацию вместо базовой.
@@ -131,6 +139,20 @@ class MyWebsocketConfiguration(WebsocketConfiguration):
 
     max_message_size = 2 * 1024 * 1024
 ```
+
+## WebUIConfiguration
+
+`WebUIConfiguration` управляет встроенным Web UI: OpenAPI-документацией, графом зависимостей, темой и окружениями, где UI доступен.
+
+```python
+class WebUIConfiguration(Configuration):
+    enabled: bool = True
+    leaves_animation_enabled: bool = True
+    default_theme: Theme = Theme.DARK
+    allowed_on: Tuple[Environment, ...] = (Environment.LOCAL, Environment.DEVELOPMENT)
+```
+
+По умолчанию Web UI доступен в `local` и `development`. В production он скрыт, пока ты явно не разрешишь его через свой наследник `WebUIConfiguration`.
 
 ## Как Autumn выбирает конфигурацию
 

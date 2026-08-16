@@ -12,6 +12,7 @@ from autumn.configuration import (
     LocalizationConfiguration,
     WebsocketConfiguration
 )
+from autumn import Environment
 ```
 
 ## ApplicationConfiguration
@@ -24,6 +25,7 @@ class ApplicationConfiguration(Configuration):
     version: str = 'v0.1.0'
 
     description: Optional[str] = None
+    environment: Environment = Environment.LOCAL
 
     host: str = '127.0.0.1'
     port: int = 8000
@@ -38,15 +40,21 @@ class ApplicationConfiguration(Configuration):
 
 `max_request_body_bytes` is the maximum accepted HTTP request body size. `0` rejects non-empty bodies and `None` disables the limit.
 
+`environment` defines the current application environment and is the single source of truth for `@only`, Web UI availability, and production-safe error behavior. The default is `Environment.LOCAL`.
+
+The environment is no longer passed to `Autumn(...)`. Configure it through an `ApplicationConfiguration` subclass.
+
 To override it, create a subclass.
 
 ```python
+from autumn import Environment
 from autumn.configuration import ApplicationConfiguration, source, Maple
 
 @source.env(prefix = 'APP_')
 class MyApplicationConfiguration(ApplicationConfiguration):
     name: Maple['name', str] = 'My API'
     port: Maple['port', int] = 3000
+    environment: Maple['environment', Environment] = Environment.LOCAL
 ```
 
 If a custom configuration inherits from a built-in one, Autumn uses it as the effective configuration instead of the base class.
@@ -131,6 +139,20 @@ class MyWebsocketConfiguration(WebsocketConfiguration):
 
     max_message_size = 2 * 1024 * 1024
 ```
+
+## WebUIConfiguration
+
+`WebUIConfiguration` controls the built-in Web UI: OpenAPI documentation, the dependency graph, theme, and environments where the UI is available.
+
+```python
+class WebUIConfiguration(Configuration):
+    enabled: bool = True
+    leaves_animation_enabled: bool = True
+    default_theme: Theme = Theme.DARK
+    allowed_on: Tuple[Environment, ...] = (Environment.LOCAL, Environment.DEVELOPMENT)
+```
+
+By default, the Web UI is available in `local` and `development`. In production it stays hidden unless you explicitly allow it through your own `WebUIConfiguration` subclass.
 
 ## How Autumn Chooses Configuration
 

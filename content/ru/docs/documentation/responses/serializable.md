@@ -103,6 +103,40 @@ class User:
 
 Результат будет таким же: `id` и `name` попадут в JSON, `password` будет скрыт.
 
+## Классы без конструктора
+
+Если у класса нет собственного `__init__`, `@serializable` сгенерирует его по аннотациям на уровне класса. Это удобно для простых response-моделей.
+
+```python
+@serializable
+class UserResponse:
+    id: Public[int]
+    name: Public[str]
+    age: Public[int] = 18
+    password_hash: Private[str] = 'hidden'
+```
+
+Теперь объект можно создать через keyword arguments.
+
+```python
+user = UserResponse(
+    id = 1,
+    name = 'Dima'
+)
+```
+
+Autumn применит дефолтные значения, потребует обязательные поля и отклонит неизвестные аргументы. `Private`-поля участвуют в создании объекта, но не попадают в JSON.
+
+```json
+{
+    "id": 1,
+    "name": "Dima",
+    "age": 18
+}
+```
+
+Если у класса уже есть свой `__init__`, Autumn его не меняет.
+
 ## Списки и вложенные структуры
 
 `@serializable`-объекты можно возвращать не только отдельно, но и внутри списков и словарей.

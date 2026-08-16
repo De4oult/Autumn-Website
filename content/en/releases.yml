@@ -2,6 +2,16 @@
 description: See how Autumn evolves from release to release — from core improvements to new capabilities.
 
 releases:
+  - version: v0.1.7
+    date: August 16, 2026
+    changes:
+      - "`ApplicationConfiguration.environment` is now the single source of truth for the application environment; the `environment` argument was removed from `Autumn(...)`"
+      - "The default environment is now `Environment.LOCAL`, making local development work without manual environment wiring"
+      - "`WebUIConfiguration.allowed_on` now includes `LOCAL` and `DEVELOPMENT` by default, so the built-in documentation remains available locally"
+      - "`@serializable` now generates `__init__` for classes without a custom constructor using class-level annotations"
+      - "Generated `@serializable` constructors support required fields, default values, `Public[...]`, and `Private[...]`"
+      - "OpenAPI schemas for `@serializable` no longer mark fields with default values as required"
+
   - version: v0.1.6
     date: August 15, 2026
     changes:
