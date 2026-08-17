@@ -62,6 +62,54 @@ async def database(configuration: DatabaseConfiguration) -> DBClient:
 
 При создании `UserService` Autumn сначала разрешит `DBClient`, а затем вызовет конструктор.
 
+## Attribute injection
+
+Сервисы и контроллеры могут получать зависимости через аннотации атрибутов класса. Это удобно, когда классу не нужен собственный конструктор.
+
+```python
+from autumn import service
+from autumn.controller import REST, post
+
+@service
+class AuthService:
+    async def login(self, data):
+        ...
+
+@service
+class NotificationService:
+    async def notify(self, user_id: int):
+        ...
+
+@REST(prefix = '/auth')
+class AuthController:
+    auth_service: AuthService
+    notification_service: NotificationService
+
+    @post('/login')
+    async def login(self, data: LoginRequest):
+        result = await self.auth_service.login(data)
+        await self.notification_service.notify(result.user_id)
+        return result
+```
+
+Autumn разрешает публичные аннотированные атрибуты после создания экземпляра класса. Constructor injection и attribute injection можно использовать вместе.
+
+Атрибуты класса со значениями по умолчанию не считаются зависимостями:
+
+```python
+@service
+class UserService:
+    cache_ttl: int = 60
+```
+
+Union-зависимости работают так же, как в конструкторах, включая выбор окружения через `@only`:
+
+```python
+@REST(prefix = '/checkout')
+class CheckoutController:
+    gateway: MockGateway | LiveGateway
+```
+
 ## Сервисы в контроллерах
 
 Контроллеры тоже создаются через контейнер. Поэтому сервисы удобно передавать прямо в `__init__` контроллера.

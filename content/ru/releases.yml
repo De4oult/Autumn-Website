@@ -2,6 +2,17 @@
 description: Посмотрите, как Autumn развивается от релиза к релизу — от изменений в ядре до новых возможностей.
 
 releases:
+  - version: v0.1.8
+    date: 17 августа 2026
+    changes:
+      - "`HTTPException` теперь возвращает более чистый payload ошибки с `code`, `details`, `request_id` и `timestamp`"
+      - "Ошибки валидации теперь возвращают структурированные `fields` с `source`, `field`, `input` и `error` для body- и query-ошибок"
+      - "Доменные ошибки могут переопределять стандартное имя HTTP-статуса через собственный `code`, например `INVALID_OR_EXPIRED_CHALLENGE`"
+      - "Неожиданные внутренние exception теперь печатают полный traceback в консоль, а ожидаемые `HTTPException` не шумят в выводе"
+      - "Контроллеры и сервисы теперь поддерживают dependency injection через атрибуты класса, поэтому классы можно писать без конструктора"
+      - "Attribute injection использует те же правила разрешения зависимостей, что и constructor injection, включая union-зависимости и окружения `@only`"
+      - "Autumn теперь возвращает `405 Method Not Allowed` с заголовком `Allow`, если path маршрута существует, но запрошенный HTTP-метод не зарегистрирован"
+
   - version: v0.1.7
     date: 16 августа 2026
     changes:

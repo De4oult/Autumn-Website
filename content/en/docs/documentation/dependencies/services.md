@@ -62,6 +62,54 @@ async def database(configuration: DatabaseConfiguration) -> DBClient:
 
 When creating `UserService`, Autumn first resolves `DBClient`, then calls the constructor.
 
+## Attribute Injection
+
+Services and controllers can also receive dependencies through class annotations. This is useful when the class does not need a custom constructor.
+
+```python
+from autumn import service
+from autumn.controller import REST, post
+
+@service
+class AuthService:
+    async def login(self, data):
+        ...
+
+@service
+class NotificationService:
+    async def notify(self, user_id: int):
+        ...
+
+@REST(prefix = '/auth')
+class AuthController:
+    auth_service: AuthService
+    notification_service: NotificationService
+
+    @post('/login')
+    async def login(self, data: LoginRequest):
+        result = await self.auth_service.login(data)
+        await self.notification_service.notify(result.user_id)
+        return result
+```
+
+Autumn resolves annotated public attributes after creating the class instance. Constructor injection and attribute injection can be used together.
+
+Class attributes with default values are not treated as dependencies:
+
+```python
+@service
+class UserService:
+    cache_ttl: int = 60
+```
+
+Union dependencies work the same way as in constructors, including `@only` environment selection:
+
+```python
+@REST(prefix = '/checkout')
+class CheckoutController:
+    gateway: MockGateway | LiveGateway
+```
+
 ## Services in Controllers
 
 Controllers are also created through the container, so services can be passed directly to controller `__init__`.

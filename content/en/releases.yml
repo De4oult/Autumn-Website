@@ -2,6 +2,17 @@
 description: See how Autumn evolves from release to release — from core improvements to new capabilities.
 
 releases:
+  - version: v0.1.8
+    date: August 17, 2026
+    changes:
+      - "`HTTPException` now returns a cleaner error payload with `code`, `details`, `request_id`, and `timestamp`"
+      - "Validation failures now return structured `fields` with `source`, `field`, `input`, and `error` for body and query errors"
+      - "Domain errors can override the default HTTP status code name with a custom `code`, such as `INVALID_OR_EXPIRED_CHALLENGE`"
+      - "Unexpected internal exceptions now print full tracebacks to the console, while expected `HTTPException` responses stay silent"
+      - "Controllers and services now support dependency injection through class attributes, allowing constructor-free classes with annotated dependencies"
+      - "Attribute injection supports the same dependency resolution rules as constructor injection, including union dependencies and `@only` environments"
+      - "Autumn now returns `405 Method Not Allowed` with an `Allow` header when a route path exists but the requested HTTP method is not registered"
+
   - version: v0.1.7
     date: August 16, 2026
     changes:

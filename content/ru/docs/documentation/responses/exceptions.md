@@ -1,9 +1,9 @@
 ---
 title: Исключения
-description: Возвращайте HTTP-ошибки предсказуемо, даже когда в саду что-то пошло не так.
+description: Возвращайте предсказуемые HTTP-ошибки и оставляйте неожиданные сбои видимыми в консоли.
 ---
 
-Для HTTP-ошибок в Autumn используется `HTTPException`. Его можно выбросить из контроллера, middleware или любого кода, который вызывается во время обработки запроса.
+Для ожидаемых HTTP-ошибок Autumn использует `HTTPException`. Его можно выбросить из контроллера, middleware, сервиса или любого кода, который вызывается во время обработки запроса.
 
 ```python
 from autumn.controller import REST, get
@@ -11,51 +11,98 @@ from autumn.response import HTTPException
 
 @REST(prefix = '/users')
 class UserController:
-    @get('/teapot')
-    async def get_teapot(self):
-        raise HTTPException(status = 418)
+    @get('/{id:int}')
+    async def get_user(self, id: int):
+        raise HTTPException(
+            status = 404,
+            code = 'USER_NOT_FOUND',
+            details = 'User with this id does not exist'
+        )
 ```
 
-Такой обработчик завершит запрос ответом со статусом `418`.
+## Формат ошибки
 
-## Статус, title и details
-
-`HTTPException` принимает `status`, `title` и `details`.
-
-```python
-raise HTTPException(
-    status  = 404,
-    title   = 'User not found',
-    details = 'User with this id does not exist'
-)
-```
-
-Если `title` не передан, Autumn подставит стандартный title для известных статусов. `details` по умолчанию будет пустой строкой.
-
-JSON-ответ ошибки выглядит так:
+JSON-ошибки используют единый стабильный формат:
 
 ```json
 {
-    "status": 404,
-    "title": "User not found",
+    "code": "USER_NOT_FOUND",
     "details": "User with this id does not exist",
-    "request_id": "req-01H..."
+    "request_id": "req-01H...",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
-Autumn добавляет `request_id`, если он есть у текущего запроса.
+`code` — машинный код ошибки. Если его не передать, Autumn использует название HTTP-статуса:
+
+| Status | Default code |
+| ------ | ------------ |
+| `400`  | `BAD_REQUEST` |
+| `404`  | `NOT_FOUND` |
+| `405`  | `METHOD_NOT_ALLOWED` |
+| `422`  | `UNPROCESSABLE_ENTITY` |
+| `500`  | `INTERNAL_SERVER_ERROR` |
+
+Для доменных ошибок передавай собственный код:
+
+```python
+raise HTTPException(
+    status = 400,
+    code = 'INVALID_OR_EXPIRED_CHALLENGE',
+    details = 'Challenge is invalid or expired'
+)
+```
+
+Ответ:
+
+```json
+{
+    "code": "INVALID_OR_EXPIRED_CHALLENGE",
+    "details": "Challenge is invalid or expired",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
+
+## Ошибки полей
+
+Ошибки валидации содержат `fields`.
+
+```json
+{
+    "code": "VALIDATION_ERROR",
+    "details": "Request validation failed",
+    "fields": [
+        {
+            "source": "body",
+            "field": "region",
+            "input": "",
+            "error": "Region must be an ISO 3166-1 alpha-2 country code"
+        }
+    ],
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
+
+`source` показывает, откуда пришло невалидное значение:
+
+- `body` — ошибка Pydantic-валидации тела запроса;
+- `query` — ошибка параметра, объявленного через `@query.string`, `@query.int`, `@query.float` или `@query.uuid`.
+
+Вложенные поля отображаются через точку, например `device.id`.
 
 ## Request ID
 
 Каждый HTTP-ответ получает заголовок `X-Request-ID`.
 
-Autumn берёт первое доступное значение:
+Autumn использует первое доступное значение:
 
 - `X-Request-ID`
 - `X-Correlation-ID`
 - автоматически сгенерированный id
 
-Этот же id попадает в JSON-ответ ошибки.
+Тот же id попадает в JSON-ответ с ошибкой.
 
 ```http
 X-Request-ID: req-123
@@ -63,24 +110,24 @@ X-Request-ID: req-123
 
 ```json
 {
-    "status": 409,
-    "title": "Something",
-    "details": "Conflict",
-    "request_id": "req-123"
+    "code": "CONFLICT",
+    "details": "Email already exists",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
-## Meta и кастомный body
+## Meta и custom body
 
-Используй `meta` для структурированных деталей ошибки, которые должны жить рядом со стандартным форматом.
+Используй `meta`, если к стандартному формату ошибки нужно добавить структурированные данные.
 
 ```python
 raise HTTPException(
     status = 409,
+    code = 'EMAIL_ALREADY_EXISTS',
     details = 'Email already exists',
     meta = {
-        'field': 'email',
-        'code': 'duplicate'
+        'field': 'email'
     }
 )
 ```
@@ -89,13 +136,12 @@ JSON-ответ:
 
 ```json
 {
-    "status": 409,
-    "title": "Something",
+    "code": "EMAIL_ALREADY_EXISTS",
     "details": "Email already exists",
     "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00",
     "meta": {
-        "field": "email",
-        "code": "duplicate"
+        "field": "email"
     }
 }
 ```
@@ -111,86 +157,54 @@ raise HTTPException(
 )
 ```
 
-Autumn всё равно добавит `request_id`, если в кастомном body его ещё нет.
+Autumn всё равно добавит `request_id`, если custom body ещё не содержит его.
 
-## Формат ответа
+## HTML или JSON
 
-Autumn умеет отдавать ошибку как JSON или HTML.
+Autumn может возвращать ошибки как JSON или HTML.
 
-Если клиент явно предпочитает HTML через header `Accept`, будет возвращена HTML-страница ошибки.
+Если клиент явно предпочитает HTML через `Accept`, будет возвращена HTML-страница ошибки. API-клиенты обычно получают JSON.
 
 ```http
 Accept: text/html
 ```
 
-Если HTML не запрошен, ошибка возвращается как JSON.
+## Method Not Allowed
 
-```http
-Accept: application/json
-```
-
-## Ошибки валидации
-
-Некоторые ошибки Autumn выбрасывает автоматически.
-
-Если обязательный query-параметр не передан:
+Если путь маршрута существует, но HTTP-метод не совпадает, Autumn возвращает `405 Method Not Allowed`, а не `404`.
 
 ```python
-from autumn.request import query
-
-@get('/search')
-@query.string('name', required = True)
-async def search(self, name: str):
-    return { 'name' : name }
+@REST(prefix = '/test')
+class TestController:
+    @get('/')
+    async def index(self):
+        return { 'ok': True }
 ```
 
-Запрос без `name` вернет `400`.
-
-Если тело запроса не проходит Pydantic-валидацию, Autumn вернет `422`.
-
-```python
-from pydantic import BaseModel, Field
-
-class UserSchema(BaseModel):
-    age: int = Field(..., ge = 13)
-```
+`POST /test` вернет:
 
 ```json
 {
-    "age": 10
+    "code": "METHOD_NOT_ALLOWED",
+    "details": "Method POST is not allowed for /test",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
-Такой payload не пройдет валидацию.
+В ответ также добавляется заголовок `Allow` со списком доступных методов.
 
-## Необработанные исключения
+## Traceback в консоли
 
-Если во время обработки запроса возникает обычное исключение, Autumn перехватывает его и возвращает `500`.
+`HTTPException` — ожидаемый сценарий приложения, поэтому Autumn не выводит его в консоль.
 
-```python
-@get('/exception')
-async def exception(self):
-    return { 'answer' : 1 / 0 }
+Необработанные exception считаются внутренней ошибкой. Autumn печатает полный traceback в консоль и возвращает `500`. В production детали ответа остаются обобщёнными:
+
+```json
+{
+    "code": "INTERNAL_SERVER_ERROR",
+    "details": "Internal Server Error",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
 ```
-
-Клиент получит HTTP-ответ со статусом `500`, а текст исключения попадет в `details`.
-
-В production Autumn возвращает обобщённый `Internal Server Error` и не раскрывает внутренние детали исключения.
-
-## Обработка через middleware
-
-Ошибки можно перехватывать в middleware и возвращать свой ответ.
-
-```python
-from autumn import Request, middleware
-from autumn.response import JSONResponse
-
-@middleware
-async def catch_exception(request: Request, call):
-    try:
-        return await call(request)
-    except Exception:
-        return JSONResponse({ 'error': True }, status = 500)
-```
-
-Такой middleware полезен, если нужно централизованно изменить формат ошибок или добавить логирование.

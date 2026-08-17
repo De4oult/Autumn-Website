@@ -1,9 +1,9 @@
 ---
 title: Exceptions
-description: Return HTTP errors predictably, even when something goes wrong in the garden.
+description: Return predictable HTTP errors and keep unexpected failures visible in the console.
 ---
 
-Autumn uses `HTTPException` for HTTP errors. It can be raised from a controller, middleware, or any code called during request handling.
+Autumn uses `HTTPException` for expected HTTP errors. It can be raised from a controller, middleware, service, or any code called during request handling.
 
 ```python
 from autumn.controller import REST, get
@@ -11,39 +11,86 @@ from autumn.response import HTTPException
 
 @REST(prefix = '/users')
 class UserController:
-    @get('/teapot')
-    async def get_teapot(self):
-        raise HTTPException(status = 418)
+    @get('/{id:int}')
+    async def get_user(self, id: int):
+        raise HTTPException(
+            status = 404,
+            code = 'USER_NOT_FOUND',
+            details = 'User with this id does not exist'
+        )
 ```
 
-This handler finishes the request with status `418`.
+## Error Shape
 
-## Status, title, and details
-
-`HTTPException` accepts `status`, `title`, and `details`.
-
-```python
-raise HTTPException(
-    status  = 404,
-    title   = 'User not found',
-    details = 'User with this id does not exist'
-)
-```
-
-If `title` is not passed, Autumn uses the standard title for known statuses. `details` defaults to an empty string.
-
-JSON error response:
+JSON errors use one stable shape:
 
 ```json
 {
-    "status": 404,
-    "title": "User not found",
+    "code": "USER_NOT_FOUND",
     "details": "User with this id does not exist",
-    "request_id": "req-01H..."
+    "request_id": "req-01H...",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
-Autumn adds `request_id` when the current request has one.
+`code` is the machine-readable error code. If you do not pass it, Autumn uses the HTTP status phrase:
+
+| Status | Default code |
+| ------ | ------------ |
+| `400`  | `BAD_REQUEST` |
+| `404`  | `NOT_FOUND` |
+| `405`  | `METHOD_NOT_ALLOWED` |
+| `422`  | `UNPROCESSABLE_ENTITY` |
+| `500`  | `INTERNAL_SERVER_ERROR` |
+
+Use a custom code for domain errors:
+
+```python
+raise HTTPException(
+    status = 400,
+    code = 'INVALID_OR_EXPIRED_CHALLENGE',
+    details = 'Challenge is invalid or expired'
+)
+```
+
+Response:
+
+```json
+{
+    "code": "INVALID_OR_EXPIRED_CHALLENGE",
+    "details": "Challenge is invalid or expired",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
+
+## Validation Fields
+
+Validation errors include `fields`.
+
+```json
+{
+    "code": "VALIDATION_ERROR",
+    "details": "Request validation failed",
+    "fields": [
+        {
+            "source": "body",
+            "field": "region",
+            "input": "",
+            "error": "Region must be an ISO 3166-1 alpha-2 country code"
+        }
+    ],
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
+
+`source` shows where the invalid value came from:
+
+- `body` for Pydantic request body validation;
+- `query` for parameters declared with `@query.string`, `@query.int`, `@query.float`, or `@query.uuid`.
+
+Nested fields are rendered with dot notation, for example `device.id`.
 
 ## Request ID
 
@@ -63,24 +110,24 @@ X-Request-ID: req-123
 
 ```json
 {
-    "status": 409,
-    "title": "Something",
-    "details": "Conflict",
-    "request_id": "req-123"
+    "code": "CONFLICT",
+    "details": "Email already exists",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
 ## Meta and Custom Body
 
-Use `meta` for structured error details that should live next to the standard error shape.
+Use `meta` when you need extra structured information next to the standard error shape.
 
 ```python
 raise HTTPException(
     status = 409,
+    code = 'EMAIL_ALREADY_EXISTS',
     details = 'Email already exists',
     meta = {
-        'field': 'email',
-        'code': 'duplicate'
+        'field': 'email'
     }
 )
 ```
@@ -89,13 +136,12 @@ JSON response:
 
 ```json
 {
-    "status": 409,
-    "title": "Something",
+    "code": "EMAIL_ALREADY_EXISTS",
     "details": "Email already exists",
     "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00",
     "meta": {
-        "field": "email",
-        "code": "duplicate"
+        "field": "email"
     }
 }
 ```
@@ -113,84 +159,52 @@ raise HTTPException(
 
 Autumn still adds `request_id` unless the custom body already contains it.
 
-## Response Format
+## HTML or JSON
 
 Autumn can return errors as JSON or HTML.
 
-If the client explicitly prefers HTML through `Accept`, an HTML error page is returned.
+If the client explicitly prefers HTML through `Accept`, an HTML error page is returned. API clients normally receive JSON.
 
 ```http
 Accept: text/html
 ```
 
-Otherwise, the error is returned as JSON.
+## Method Not Allowed
 
-```http
-Accept: application/json
-```
-
-## Validation Errors
-
-Some errors are raised automatically.
-
-If a required query parameter is missing:
+If a route path exists but the HTTP method does not match, Autumn returns `405 Method Not Allowed` instead of `404`.
 
 ```python
-from autumn.request import query
-
-@get('/search')
-@query.string('name', required = True)
-async def search(self, name: str):
-    return { 'name' : name }
+@REST(prefix = '/test')
+class TestController:
+    @get('/')
+    async def index(self):
+        return { 'ok': True }
 ```
 
-the request returns `400`.
-
-If the request body fails Pydantic validation, Autumn returns `422`.
-
-```python
-from pydantic import BaseModel, Field
-
-class UserSchema(BaseModel):
-    age: int = Field(..., ge = 13)
-```
+`POST /test` returns:
 
 ```json
 {
-    "age": 10
+    "code": "METHOD_NOT_ALLOWED",
+    "details": "Method POST is not allowed for /test",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
 }
 ```
 
-This payload does not pass validation.
+The response also includes an `Allow` header with the available methods.
 
-## Unhandled Exceptions
+## Console Tracebacks
 
-If regular code raises an exception during request handling, Autumn catches it and returns `500`.
+`HTTPException` is expected application flow and is not printed to the console.
 
-```python
-@get('/exception')
-async def exception(self):
-    return { 'answer' : 1 / 0 }
+Unhandled exceptions are internal failures. Autumn prints their full traceback to the console and returns a `500` response. In production, response details stay generic:
+
+```json
+{
+    "code": "INTERNAL_SERVER_ERROR",
+    "details": "Internal Server Error",
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
 ```
-
-The client receives HTTP `500`, and the exception text is placed into `details`.
-
-In production, Autumn returns a generic `Internal Server Error` instead of exposing internal exception details.
-
-## Handling Through Middleware
-
-Errors can be caught in middleware to return a custom response.
-
-```python
-from autumn import Request, middleware
-from autumn.response import JSONResponse
-
-@middleware
-async def catch_exception(request: Request, call):
-    try:
-        return await call(request)
-    except Exception:
-        return JSONResponse({ 'error': True }, status = 500)
-```
-
-This is useful for changing the error format centrally or adding logging.

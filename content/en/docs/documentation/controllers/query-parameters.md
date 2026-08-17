@@ -122,7 +122,24 @@ Calling the route without `name`:
 GET /users/search
 ```
 
-returns `400` with a message about the missing query parameter.
+returns `400` with a structured validation error:
+
+```json
+{
+    "code": "VALIDATION_ERROR",
+    "details": "Request validation failed",
+    "fields": [
+        {
+            "source": "query",
+            "field": "name",
+            "input": null,
+            "error": "Field required"
+        }
+    ],
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
 
 ## Default and Required
 
@@ -157,3 +174,5 @@ Invalid:
 ```http
 GET /users?page=abc
 ```
+
+Autumn returns the same `VALIDATION_ERROR` shape, with `input` set to the original query value.

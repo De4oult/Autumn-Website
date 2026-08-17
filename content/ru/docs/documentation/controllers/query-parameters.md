@@ -128,7 +128,24 @@ class UserController:
 GET /users/search
 ```
 
-Autumn вернет ошибку `400` с сообщением о пропущенном query-параметре.
+Autumn вернет `400` со структурированной ошибкой валидации:
+
+```json
+{
+    "code": "VALIDATION_ERROR",
+    "details": "Request validation failed",
+    "fields": [
+        {
+            "source": "query",
+            "field": "name",
+            "input": null,
+            "error": "Field required"
+        }
+    ],
+    "request_id": "req-123",
+    "timestamp": "2026-08-17T10:15:30.000000+00:00"
+}
+```
 
 ## Default и required
 
@@ -163,3 +180,5 @@ GET /users?page=5
 ```http
 GET /users?page=abc
 ```
+
+Autumn вернет тот же формат `VALIDATION_ERROR`, а в `input` попадет исходное query-значение.
